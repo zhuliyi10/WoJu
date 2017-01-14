@@ -1,0 +1,12 @@
+<com.zhulilyi.woju.widget.theme.ColorRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="?attr/colorPrimary">
+
+    <com.zhulilyi.woju.widget.theme.ColorTextView
+        android:id="@+id/title_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white" />
+</com.zhulilyi.woju.widget.theme.ColorRelativeLayout>

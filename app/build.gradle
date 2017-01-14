@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+android {
+    signingConfigs {
+        zhuliyi {
+            keyAlias 'leory'
+            keyPassword '123456'
+            storeFile file('D:/commonData/SportsFace/sign/zhuliyi.jks')
+            storePassword '123456'
+        }
+    }
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+    defaultConfig {
+        applicationId "com.zhulilyi.woju"
+        minSdkVersion 11
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.zhuliyi
+        }
+        debug {
+            applicationIdSuffix '.debug'
+            signingConfig signingConfigs.zhuliyi
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:24.2.1'
+
+    //recyclerview从24后用appcompat中分离出来
+    compile 'com.android.support:recyclerview-v7:24.2.1'
+
+    //注解框架
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
+   //图片加载
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    //异步操作
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+
+    //圆形
+    compile 'com.makeramen:roundedimageview:2.2.1'
+
+}
