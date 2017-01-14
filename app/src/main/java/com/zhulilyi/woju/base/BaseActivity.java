@@ -6,12 +6,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
+import com.zhulilyi.woju.R;
 import com.zhulilyi.woju.app.App;
+import com.zhulilyi.woju.widget.statusLayout.OnShowHideViewListener;
+import com.zhulilyi.woju.widget.statusLayout.StatusLayoutManager;
 
+import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
@@ -26,24 +30,52 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected T basePresenter;
     protected Activity activity;
     protected Context context;
+    protected FrameLayout flContent;
+    protected StatusLayoutManager statusLayoutManager;//状态布局,位于标题之下
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = this;
+        context = this;
         init();
-        activity=this;
-        context=this;
+    }
+
+    @Override
+    public void setContentView(int viewId) {
+        View root = View.inflate(this, R.layout.activity_base, null);
+        flContent = (FrameLayout) root.findViewById(R.id.fl_content);
+        super.setContentView(root);
+        statusLayoutManager = StatusLayoutManager.newBuilder(this)
+                .contentView(viewId)
+                .emptyDataView(R.layout.activity_emptydata)
+                .errorView(R.layout.activity_error)
+                .loadingView(R.layout.activity_loading)
+                .netWorkErrorView(R.layout.activity_networkerror)
+                .onShowHideViewListener(new OnShowHideViewListener() {
+                    @Override
+                    public void onShowView(View view, int id) {
+
+                    }
+
+                    @Override
+                    public void onHideView(View view, int id) {
+
+                    }
+                }).build();
+        flContent.addView(statusLayoutManager.getRootLayout());
+        unbinder = ButterKnife.bind(this);
+        statusLayoutManager.showContent();
     }
 
     protected void init() {
         setTranslucentStatus(true);
-        onPreCreate();
         App.getInstance().registerActivity(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        setTitleHeight(getRootView(this));
     }
 
     @Override
@@ -73,15 +105,12 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         if (unbinder != null) {
             unbinder.unbind();
         }
-        if(basePresenter!=null) {
+        if (basePresenter != null) {
             basePresenter.detachView();
             basePresenter = null;
         }
     }
 
-    private void onPreCreate() {
-
-    }
 
     /**
      * 设置沉浸式
@@ -101,12 +130,5 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             win.setAttributes(winParams);
         }
     }
-
-    private void setTitleHeight(View view) {
-
-    }
-
-    protected static View getRootView(Activity context) {
-        return ((ViewGroup) context.findViewById(android.R.id.content)).getChildAt(0);
-    }
 }
+

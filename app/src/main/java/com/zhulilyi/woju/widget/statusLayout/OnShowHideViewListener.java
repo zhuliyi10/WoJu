@@ -1,4 +1,4 @@
-package com.zhulilyi.woju.others.statusLayout;
+package com.zhulilyi.woju.widget.statusLayout;
 
 import android.view.View;
 

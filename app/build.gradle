@@ -55,4 +55,6 @@ dependencies {
     //圆形
     compile 'com.makeramen:roundedimageview:2.2.1'
 
+
+
 }
