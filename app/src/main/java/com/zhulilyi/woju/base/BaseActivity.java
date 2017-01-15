@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,6 +15,7 @@ import com.zhulilyi.woju.R;
 import com.zhulilyi.woju.app.App;
 import com.zhulilyi.woju.widget.statusLayout.OnShowHideViewListener;
 import com.zhulilyi.woju.widget.statusLayout.StatusLayoutManager;
+import com.zhulilyi.woju.widget.theme.ColorTextView;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -25,14 +27,15 @@ import butterknife.Unbinder;
  * date: 2017/1/8
  */
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
-
+    protected StatusLayoutManager statusLayoutManager;//状态布局,位于标题之下
     protected Unbinder unbinder;
     protected T basePresenter;
     protected Activity activity;
     protected Context context;
+    protected View root;
     protected FrameLayout flContent;
-    protected StatusLayoutManager statusLayoutManager;//状态布局,位于标题之下
-
+    protected Toolbar toolbar;
+    protected ColorTextView textTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,15 +46,17 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     @Override
     public void setContentView(int viewId) {
-        View root = View.inflate(this, R.layout.activity_base, null);
+        root = View.inflate(this, R.layout.activity_base, null);
+        toolbar= (Toolbar) root.findViewById(R.id.toolbar);
+        textTitle= (ColorTextView) root.findViewById(R.id.text_title);
         flContent = (FrameLayout) root.findViewById(R.id.fl_content);
         super.setContentView(root);
         statusLayoutManager = StatusLayoutManager.newBuilder(this)
                 .contentView(viewId)
-                .emptyDataView(R.layout.activity_emptydata)
-                .errorView(R.layout.activity_error)
-                .loadingView(R.layout.activity_loading)
-                .netWorkErrorView(R.layout.activity_networkerror)
+                .emptyDataView(R.layout.page_emptydata)
+                .errorView(R.layout.page_error)
+                .loadingView(R.layout.page_loading)
+                .netWorkErrorView(R.layout.page_networkerror)
                 .onShowHideViewListener(new OnShowHideViewListener() {
                     @Override
                     public void onShowView(View view, int id) {
@@ -66,10 +71,11 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         flContent.addView(statusLayoutManager.getRootLayout());
         unbinder = ButterKnife.bind(this);
         statusLayoutManager.showContent();
+        setToolbarVisible(false);
     }
 
     protected void init() {
-        setTranslucentStatus(true);
+        setTranslucentStatus(false);
         App.getInstance().registerActivity(this);
     }
 
@@ -117,7 +123,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
      *
      * @param on
      */
-    protected void setTranslucentStatus(boolean on) {
+    protected void setTranslucentStatus(boolean on) {//对4.4没效果
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window win = getWindow();
             WindowManager.LayoutParams winParams = win.getAttributes();
@@ -128,6 +134,22 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
                 winParams.flags &= ~bits;
             }
             win.setAttributes(winParams);
+        }
+    }
+
+    /**
+     * 显示标题栏
+     */
+    protected void setToolbarVisible(boolean isVisible){
+        if(isVisible){
+            toolbar.setVisibility(View.VISIBLE);
+        }else {
+            toolbar.setVisibility(View.GONE);
+        }
+    }
+    protected void setTitleName(String titleName){
+        if(titleName!=null){
+            textTitle.setText(titleName);
         }
     }
 }

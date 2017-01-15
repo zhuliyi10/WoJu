@@ -4,9 +4,17 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
+import android.widget.FrameLayout;
+
+import com.zhulilyi.woju.R;
+import com.zhulilyi.woju.widget.statusLayout.OnShowHideViewListener;
+import com.zhulilyi.woju.widget.statusLayout.StatusLayoutManager;
+import com.zhulilyi.woju.widget.theme.ColorTextView;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -18,11 +26,15 @@ import butterknife.Unbinder;
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     private final String TAG = getClass().getSimpleName();
 
+    protected StatusLayoutManager statusLayoutManager;//状态布局,位于标题之下
     protected T basePresenter;
     protected Unbinder unbinder;
     protected Context context;
     protected View rootView;
-
+    protected FrameLayout flContent;
+    protected ViewStub stubToolbar;
+    protected Toolbar toolbar;
+    protected ColorTextView textTitle;
     private boolean isViewPrepared; // 标识fragment视图已经初始化完毕
     private boolean hasFetchData; // 标识已经触发过懒加载数据
     protected abstract int getLayoutId();
@@ -50,10 +62,32 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if(rootView==null){
-            rootView=inflater.inflate(getLayoutId(),container,false);//false获取container的layoutparam，为true时保留了其自己的layoutparam
+            rootView=inflater.inflate(R.layout.fragment_base,container,false);//false获取container的layoutparam，为true时保留了其自己的layoutparam
+            flContent = (FrameLayout) rootView.findViewById(R.id.fl_content);
+            statusLayoutManager = StatusLayoutManager.newBuilder(context)
+                    .contentView(getLayoutId())
+                    .emptyDataView(R.layout.page_emptydata)
+                    .errorView(R.layout.page_error)
+                    .loadingView(R.layout.page_loading)
+                    .netWorkErrorView(R.layout.page_networkerror)
+                    .onShowHideViewListener(new OnShowHideViewListener() {
+                        @Override
+                        public void onShowView(View view, int id) {
+
+                        }
+
+                        @Override
+                        public void onHideView(View view, int id) {
+
+                        }
+                    }).build();
+            flContent.addView(statusLayoutManager.getRootLayout());
+            unbinder= ButterKnife.bind(this,rootView);
+            statusLayoutManager.showContent();
+
+            initView();
         }
-        unbinder= ButterKnife.bind(this,rootView);
-        initView();
+
         return rootView;
     }
 
@@ -127,6 +161,21 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
         }
 
     }
-
+    /**
+     * 显示标题栏
+     */
+    protected void showToolbar(){
+        if(stubToolbar==null){
+            stubToolbar= (ViewStub) rootView.findViewById(R.id.stub_toolbar);
+            stubToolbar.inflate();
+            toolbar= (Toolbar) rootView.findViewById(R.id.toolbar);
+            textTitle= (ColorTextView) rootView.findViewById(R.id.text_title);
+        }
+    }
+    protected void setTitleName(String titleName){
+        if(titleName!=null){
+            textTitle.setText(titleName);
+        }
+    }
 
 }

@@ -253,7 +253,9 @@ public class ImageCycleView extends LinearLayout {
 			mImageIndex = index;
 			// 设置图片滚动指示器背
 			mImageViews[index].setBackgroundResource(R.drawable.banner_dot_focus);
-			imageName.setText(mImageDescList.get(index));
+			if(mImageDescList!=null&&mImageDescList.size()>index) {
+				imageName.setText(mImageDescList.get(index));
+			}
 			for (int i = 0; i < mImageViews.length; i++) {
 				if (index != i) {
 					mImageViews[i].setBackgroundResource(R.drawable.banner_dot_normal);

@@ -5,4 +5,8 @@
 
     <dimen name="divider">1dp</dimen>//分隔线的宽度
     <dimen name="button_corner">4dp</dimen>//按键的圆角半径
+
+    <dimen name="text_title">16sp</dimen>//标题
+    <dimen name="text">14sp</dimen>//正常
+    <dimen name="text_small">12sp</dimen>//小字
 </resources>

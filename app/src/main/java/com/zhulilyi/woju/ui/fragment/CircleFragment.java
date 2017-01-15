@@ -13,4 +13,9 @@ public class CircleFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_circle;
     }
+
+    @Override
+    protected void initView() {
+        statusLayoutManager.showLoading();
+    }
 }

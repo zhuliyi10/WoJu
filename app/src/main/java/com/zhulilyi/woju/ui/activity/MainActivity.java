@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -41,10 +43,11 @@ public class MainActivity extends BaseActivity {
     private int red1 = 128, green1 = 128, blue1 = 128;//字体的颜色变化
     private int red2 = 36, green2 = 170, blue2 = 254;
     private int redDif = red2 - red1, greenDif = green2 - green1, blueDif = blue2 - blue1;
-
+    private String[] mainTitles={"消息","圈子","发现","我的"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setTranslucentStatus(true);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initView();
@@ -52,6 +55,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initView() {
+        initToolbar();
         ll_tab = new LinearLayout[]{
                 (LinearLayout) findViewById(R.id.linear1),
                 (LinearLayout) findViewById(R.id.linear2),
@@ -84,6 +88,30 @@ public class MainActivity extends BaseActivity {
         setPagerPos(0);
     }
 
+    private void initToolbar(){
+        setToolbarVisible(true);
+        toolbar.inflateMenu(R.menu.main_menu);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.search:
+                        break;
+                    case R.id.contact:
+                        break;
+                    case R.id.plus:
+                        break;
+                }
+                return true;
+            }
+        });
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
     private void setListener(){
         viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
         for (int i = 0; i < ll_tab.length; i++) {
@@ -93,6 +121,11 @@ public class MainActivity extends BaseActivity {
     }
     private void setPagerPos(int pos){
         if(pos==currentPage)return;
+        if(pos==0){
+            toolbar.setNavigationIcon(R.drawable.house);
+        }else {
+            toolbar.setNavigationIcon(null);
+        }
         for (int i = 0; i < fragmentList.size(); i++) {
             if (i == pos) {
                 iva_tab[i].setAlpha(1f);
@@ -104,6 +137,7 @@ public class MainActivity extends BaseActivity {
                 tv_tab[i].setTextColor(Color.rgb(red1, green1, blue1));
             }
         }
+        setTitleName(mainTitles[pos]);
         currentPage = pos;
         viewPager.setCurrentItem(currentPage, false);
     }
