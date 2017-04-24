@@ -7,8 +7,8 @@
     <!--basic color-->
     <color name="white">#ffffff</color>
     <color name="black">#040404</color>
-    <color name="text">#414141</color>//主要的文本颜色
-    <color name="text_low">#727272</color>
+    <color name="text">#222222</color>//主要的文本颜色
+    <color name="text_low">#aaaaaa</color>
     <color name="bg_grey">#ececec</color>//灰色背景
     <color name="bg_white">#ffffff</color>
     <color name="divider">#dddddd</color>//分隔线的颜色

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:gravity="center_vertical"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:layout_height="64dp">
+    <ImageView
+        android:id="@+id/img_head"
+        android:layout_width="@dimen/news_head"
+        android:layout_height="@dimen/news_head"/>
+    <LinearLayout
+        android:layout_marginLeft="8dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_title"
+                android:text="203-何源明"
+                android:textSize="16sp"
+                android:textColor="@color/text"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/text_time"
+                android:text="下午 13:45"
+                android:textSize="12sp"
+                android:textColor="@color/text_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/text_content"
+            android:layout_marginTop="4dp"
+            android:text="房东，厕所的佃坏了，麻烦处理一下"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textColor="@color/text_low"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

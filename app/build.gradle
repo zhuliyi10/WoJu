@@ -55,6 +55,9 @@ dependencies {
     //圆形
     compile 'com.makeramen:roundedimageview:2.2.1'
 
+    //baseAdapter
+    compile 'com.zhy:base-rvadapter:3.0.3'
+
 
 
 }
