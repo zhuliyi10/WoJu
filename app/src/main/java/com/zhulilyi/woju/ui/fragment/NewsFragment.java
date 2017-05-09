@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zhulilyi.woju.R;
+import com.zhulilyi.woju.app.Constants;
 import com.zhulilyi.woju.base.BaseFragment;
 import com.zhulilyi.woju.parser.NewsParser;
 import com.zhulilyi.woju.ui.adapter.NewsAdapter;
+import com.zhulilyi.woju.utils.GsonUtil;
 import com.zhulilyi.woju.widget.decoration.DividerItemDecoration;
 
 import java.util.ArrayList;
@@ -37,7 +39,6 @@ public class NewsFragment extends BaseFragment {
     protected void initView() {
         for (int i=0;i<100;i++){
             NewsParser parser=new NewsParser();
-            parser.head=R.drawable.default_head;
             parser.title="203-何源明";
             parser.time="下午 13:45";
             parser.content="房东，厕所的佃坏了，麻烦处理一下";
@@ -47,7 +48,7 @@ public class NewsFragment extends BaseFragment {
         DividerItemDecoration itemDecoration=new DividerItemDecoration(context);
         itemDecoration.setmDivider(context.getResources().getDrawable(R.drawable.divider_grey_line));
         rcv.addItemDecoration(itemDecoration);
-        rcv.setAdapter(new NewsAdapter(context,newsList));
+        rcv.setAdapter(new NewsAdapter(context,getDataList()));
     }
 
     @Override
@@ -56,5 +57,9 @@ public class NewsFragment extends BaseFragment {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         ButterKnife.bind(this, rootView);
         return rootView;
+    }
+    private  List<NewsParser> getDataList() {
+       List<NewsParser> list = GsonUtil.getParserList(GsonUtil.getResponseList(Constants.DATA_JSON_NEWS_TEST),NewsParser.class);
+        return list;
     }
 }

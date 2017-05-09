@@ -1,6 +1,8 @@
 package com.zhulilyi.woju.ui.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.zhulilyi.woju.R;
 import com.zhulilyi.woju.base.BaseAdapter;
@@ -23,9 +25,33 @@ public class NewsAdapter extends BaseAdapter<NewsParser> {
 
     @Override
     protected void convert(ViewHolder holder, NewsParser newsParser, int position) {
-        holder.setImageResource(R.id.img_head,newsParser.head);
+        if(newsParser.type==1){
+            holder.setImageResource(R.id.img_head,R.drawable.news_head);
+        }else if(newsParser.type==2){
+            holder.setImageResource(R.id.img_head,R.drawable.news_money_change);
+        }else if(newsParser.type==3){
+            holder.setImageResource(R.id.img_head,R.drawable.news_activity);
+        }
         holder.setText(R.id.text_title,newsParser.title);
         holder.setText(R.id.text_time,newsParser.time);
         holder.setText(R.id.text_content,newsParser.content);
+        setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                int type=getDatas().get(position).type;
+                if(type==1){
+
+                }else if(type==2){
+
+                }else if(type==3){
+
+                }
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
     }
 }

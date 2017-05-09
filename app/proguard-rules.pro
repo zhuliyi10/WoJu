@@ -38,3 +38,11 @@
 -keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
  rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
+
+#gson
+    #-libraryjars libs/gson-2.2.2.jar
+    -keepattributes Signature
+    # Gson specific classes
+    -keep class sun.misc.Unsafe { *; }
+    # json解析类不能被混淆
+    -keep class com.zhuliyi.woju.parser.** { *; }

@@ -108,16 +108,5 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
                 outRect.set(mDivider.getIntrinsicHeight(), 0,0 , 0);
             }
         }
-//        if(parent.getAdapter()instanceof MineAdapter){
-//            MineAdapter mineAdapter= (MineAdapter) parent.getAdapter();
-//            if(itemPosition-mineAdapter.getHeaderCount()<0||itemPosition-mineAdapter.getHeaderCount()-mineAdapter.getFooterCount()>=mineAdapter.getCount()-1)return;
-//        }else {
-//            if (itemPosition >= parent.getAdapter().getItemCount() - 1) return;
-//        }
-//        if (mOrientation == VERTICAL_LIST) {
-//            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
-//        } else {
-//            outRect.set(0, 0, mDivider.getIntrinsicHeight(), 0);
-//        }
     }
 }
