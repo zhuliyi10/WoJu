@@ -24,6 +24,7 @@ public class WelcomeActivity extends BaseActivity<WelcomeContract.Presenter> imp
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         ButterKnife.bind(this);
+        setFullSecreen(true);
         new WelcomePresenter(this);
     }
 

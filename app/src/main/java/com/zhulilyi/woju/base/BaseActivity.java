@@ -2,17 +2,15 @@ package com.zhulilyi.woju.base;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.zhulilyi.woju.R;
 import com.zhulilyi.woju.app.App;
+import com.zhulilyi.woju.utils.StatusBarCompat;
 import com.zhulilyi.woju.widget.statusLayout.OnShowHideViewListener;
 import com.zhulilyi.woju.widget.statusLayout.StatusLayoutManager;
 import com.zhulilyi.woju.widget.theme.ColorTextView;
@@ -39,8 +37,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activity = this;
-        context = this;
         init();
     }
 
@@ -51,6 +47,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         textTitle= (ColorTextView) root.findViewById(R.id.text_title);
         flContent = (FrameLayout) root.findViewById(R.id.fl_content);
         super.setContentView(root);
+        setFullSecreen(false);
         statusLayoutManager = StatusLayoutManager.newBuilder(this)
                 .contentView(viewId)
                 .emptyDataView(R.layout.page_emptydata)
@@ -75,34 +72,11 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     }
 
     protected void init() {
-        setTranslucentStatus(false);
+        activity = this;
+        context = this;
         App.getInstance().registerActivity(this);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
 
     @Override
     protected void onDestroy() {
@@ -118,25 +92,24 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     }
 
 
-    /**
-     * 设置沉浸式
-     *
-     * @param on
-     */
-    protected void setTranslucentStatus(boolean on) {//对4.4没效果
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window win = getWindow();
-            WindowManager.LayoutParams winParams = win.getAttributes();
-            final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-            if (on) {
-                winParams.flags |= bits;
-            } else {
-                winParams.flags &= ~bits;
-            }
-            win.setAttributes(winParams);
-        }
+    protected void addStatus(int color) {
+        StatusBarCompat.setColor(this, color);
     }
 
+    protected void removeStatus() {
+        StatusBarCompat.setFullScreen(this);
+    }
+    /**
+     * 是否设置全屏,设置全屏时windowSoftInputMode = "adjustResize"无效
+     * @param isFull
+     */
+    protected void setFullSecreen(boolean isFull){
+        if(isFull) {
+            removeStatus();
+        }else {
+            addStatus(R.color.colorPrimaryDark);
+        }
+    }
     /**
      * 显示标题栏
      */

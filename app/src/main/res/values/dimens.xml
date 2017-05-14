@@ -11,4 +11,5 @@
     <dimen name="text_small">12sp</dimen>//小字
 
     <dimen name="news_head">40dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

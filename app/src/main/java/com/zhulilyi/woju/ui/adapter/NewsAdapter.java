@@ -1,12 +1,14 @@
 package com.zhulilyi.woju.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.zhulilyi.woju.R;
 import com.zhulilyi.woju.base.BaseAdapter;
 import com.zhulilyi.woju.parser.NewsParser;
+import com.zhulilyi.woju.ui.activity.ChatActivity;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
@@ -24,7 +26,7 @@ public class NewsAdapter extends BaseAdapter<NewsParser> {
     }
 
     @Override
-    protected void convert(ViewHolder holder, NewsParser newsParser, int position) {
+    protected void convert(ViewHolder holder, final NewsParser newsParser, int position) {
         if(newsParser.type==1){
             holder.setImageResource(R.id.img_head,R.drawable.news_head);
         }else if(newsParser.type==2){
@@ -37,10 +39,13 @@ public class NewsAdapter extends BaseAdapter<NewsParser> {
         holder.setText(R.id.text_content,newsParser.content);
         setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                int type=getDatas().get(position).type;
+            public void onItemClick(View view, RecyclerView.ViewHolder holdr, int position) {
+                NewsParser parser=getDatas().get(position);
+                int type=parser.type;
                 if(type==1){
-
+                    if(parser.subType==1){
+                        context.startActivity(new Intent(context, ChatActivity.class));
+                    }
                 }else if(type==2){
 
                 }else if(type==3){

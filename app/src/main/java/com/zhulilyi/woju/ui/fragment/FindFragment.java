@@ -16,6 +16,5 @@ public class FindFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        statusLayoutManager.showNetWorkError();
     }
 }
