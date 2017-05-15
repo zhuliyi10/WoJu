@@ -2,14 +2,251 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
+        android:background="@color/bg_grey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <LinearLayout
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="72dp">
+            <ImageView
+                android:src="@drawable/mine_head"
+                android:scaleType="fitCenter"
+                android:layout_width="56dp"
+                android:layout_height="56dp"/>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/text"
+                    android:text="柳岩"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="状态：未认证"
+                        android:layout_weight="1"
+                        android:textColor="@color/text_low"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="去认证"
+                        android:textColor="@color/blue_700"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <ImageView
+                android:src="@drawable/qr_code"
+                android:layout_marginLeft="16dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+            <ImageView
+                android:src="@drawable/arrow_right"
+                android:layout_marginLeft="8dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+        </LinearLayout>
+        <include layout="@layout/divider"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="88dp">
+         <FrameLayout
+             android:layout_weight="1"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+             <LinearLayout
+                 android:layout_gravity="center"
+                 android:gravity="center"
+                 android:background="@drawable/shape_balance_circle"
+                 android:orientation="vertical"
+                 android:layout_width="72dp"
+                 android:layout_height="72dp">
+                 <TextView
+                     android:text="余额"
+                     android:textColor="@color/white"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"/>
+                 <TextView
+                     android:text="00.00"
+                     android:textColor="@color/white"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"/>
+             </LinearLayout>
+         </FrameLayout>
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:background="@drawable/shape_rent_circle"
+                    android:orientation="vertical"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp">
+                    <TextView
+                        android:text="租金"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="00.00"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:background="@drawable/shape_deposit_circle"
+                    android:orientation="vertical"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp">
+                    <TextView
+                        android:text="押金"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="00.00"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+        <RelativeLayout
+            android:background="@color/bg_white"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/bill"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="64dp"
+                android:text="账单"
+                android:textColor="@color/text"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="@color/bg_white"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/f2_a"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="64dp"
+                android:text="我的窝圈"
+                android:textColor="@color/text"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="@color/bg_white"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/manager"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="64dp"
+                android:text="我的小楼"
+                android:textColor="@color/text"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="@color/bg_white"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/manager"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="64dp"
+                android:text="房间管理"
+                android:textColor="@color/text"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="@color/bg_white"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/contract"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="64dp"
+                android:text="合同"
+                android:textColor="@color/text"/>
+        </RelativeLayout>
 
         <RelativeLayout
+            android:background="@color/bg_white"
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="48dp">
 
@@ -26,273 +263,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="64dp"
                 android:text="设置"
-                android:textColor="@color/white"/>
+                android:textColor="@color/text"/>
         </RelativeLayout>
 
-        <include layout="@layout/divider"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/settings"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:text="设置"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
-
-        <include layout="@layout/divider"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/settings"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:text="设置"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
-
-        <include layout="@layout/divider"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/settings"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:text="设置"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
-
-        <include layout="@layout/divider"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/settings"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:text="设置"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
-
-        <include layout="@layout/divider"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/settings"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:text="设置"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
-
-        <include layout="@layout/divider"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/settings"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:text="设置"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
-
-        <include layout="@layout/divider"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/settings"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:text="设置"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
-
-        <include layout="@layout/divider"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/settings"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:text="设置"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
-
-        <include layout="@layout/divider"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/settings"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:text="设置"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
-
-        <include layout="@layout/divider"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/settings"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:text="设置"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
-
-        <include layout="@layout/divider"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/settings"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:text="设置"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
-
-        <include layout="@layout/divider"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/settings"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:text="设置"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
-
-        <include layout="@layout/divider"/>
     </LinearLayout>
 </ScrollView>

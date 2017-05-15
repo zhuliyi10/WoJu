@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="red_base">#e51c23</color>
+    <color name="red_300">#f36c60</color>
+    <color name="red_700">#d01716</color>
+
+    <color name="pink_base">#e91e63</color>
+    <color name="pink_300">#f36760</color>
+    <color name="pink_700">#c2185b</color>
+
+    <color name="purple_base">#9c27b0</color>
+    <color name="purple_300">#ba68c8</color>
+    <color name="purple_700">#7b1fa2</color>
+
+    <color name="blue_base">#2196F3</color>
+    <color name="blue_300">#91a7ff</color>
+    <color name="blue_700">#1976D2</color>
+
+    <color name="green_base">#98c710</color>
+    <color name="green_300">#42bd41</color>
+    <color name="green_700">#42bd41</color>
+
+    <color name="yellow_base">#ffeb3b</color>
+    <color name="yellow_300">#fff176</color>
+    <color name="yellow_700">#fbc02d</color>
+
+    <color name="orange_base">#ff7900</color>
+    <color name="orange_300">#FFE0B2</color>
+    <color name="orange_700">#f55a00</color>
+
+    <color name="grey_base">#999999</color>
+    <color name="grey_300">#e0e0e0</color>
+    <color name="grey_700">#616161</color>
+
+    <color name="indigo_base">#673ab7</color>
+    <color name="indigo_300">#9575cd</color>
+    <color name="indigo_700">#512da8</color>
+</resources>

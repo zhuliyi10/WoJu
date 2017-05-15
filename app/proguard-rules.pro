@@ -15,6 +15,13 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+#gson
+    #-libraryjars libs/gson-2.2.2.jar
+    -keepattributes Signature
+    # Gson specific classes
+    -keep class sun.misc.Unsafe { *; }
+    # json解析类不能被混淆
+    -keep class com.zhuliyi.woju.parser.** { *; }
 #butterknife
 -keep class butterknife.** { *; }
 -dontwarn butterknife.internal.**
@@ -39,10 +46,3 @@
  rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
 
-#gson
-    #-libraryjars libs/gson-2.2.2.jar
-    -keepattributes Signature
-    # Gson specific classes
-    -keep class sun.misc.Unsafe { *; }
-    # json解析类不能被混淆
-    -keep class com.zhuliyi.woju.parser.** { *; }

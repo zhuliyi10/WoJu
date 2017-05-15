@@ -8,7 +8,7 @@
     android:background="@color/colorPrimary"
     android:minHeight="48dp">
 
-    <com.zhulilyi.woju.widget.theme.ColorTextView
+    <TextView
         android:id="@+id/text_title"
         android:text="标题文字"
         android:lines="1"

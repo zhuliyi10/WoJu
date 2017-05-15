@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhulilyi.woju.widget.theme.ColorLinearLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -149,4 +149,4 @@
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
-</com.zhulilyi.woju.widget.theme.ColorLinearLayout>
+</LinearLayout>

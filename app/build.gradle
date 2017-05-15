@@ -13,7 +13,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion '25.0.0'
     defaultConfig {
-        applicationId "com.zhulilyi.woju"
+        applicationId "com.zhuliyi.woju"
         minSdkVersion 11
         targetSdkVersion 25
         versionCode 1
@@ -35,32 +35,23 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
-    //recyclerview从24后用appcompat中分离出来
-
-    //注解框架
-
-    //图片加载
-
-    //异步操作
-
-    //圆形
-
-    //baseAdapter
-
-    //解析json
-
-
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'
+    //recyclerview从24后用appcompat中分离出来
     compile 'com.android.support:recyclerview-v7:25.2.0'
     compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    //图片加载
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    //异步操作
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
-    compile 'com.makeramen:roundedimageview:2.2.1'
+    //圆形
+//    compile 'com.makeramen:roundedimageview:2.3.0'
+    //baseAdapter
     compile 'com.zhy:base-rvadapter:3.0.3'
+    //解析json
     compile 'com.google.code.gson:gson:2.5'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
     testCompile 'junit:junit:4.12'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
 }
