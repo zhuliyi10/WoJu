@@ -140,6 +140,7 @@
             </FrameLayout>
         </LinearLayout>
         <RelativeLayout
+            android:id="@+id/bill"
             android:background="@color/bg_white"
             android:layout_width="match_parent"
             android:layout_height="48dp">
@@ -245,7 +246,8 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:background="@color/bg_white"
+            android:id="@+id/setting"
+            android:background="@drawable/selector_gray"
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="48dp">
@@ -266,5 +268,11 @@
                 android:textColor="@color/text"/>
         </RelativeLayout>
 
+        <TextView
+            android:gravity="center"
+            android:textColor="@color/text_low"
+            android:text="版权归窝居所有"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"/>
     </LinearLayout>
 </ScrollView>

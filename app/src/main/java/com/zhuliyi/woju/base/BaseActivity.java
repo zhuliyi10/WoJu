@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.zhuliyi.woju.R;
-import com.zhuliyi.woju.app.App;
+import com.zhuliyi.woju.utils.ActivityManagerUtils;
 import com.zhuliyi.woju.utils.StatusBarCompat;
 import com.zhuliyi.woju.widget.statusLayout.OnShowHideViewListener;
 import com.zhuliyi.woju.widget.statusLayout.StatusLayoutManager;
@@ -42,10 +42,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     @Override
     public void setContentView(int viewId) {
-        root = View.inflate(this, R.layout.activity_base, null);
-        toolbar= (Toolbar) root.findViewById(R.id.toolbar);
-        textTitle= (TextView) root.findViewById(R.id.text_title);
-        flContent = (FrameLayout) root.findViewById(R.id.fl_content);
         super.setContentView(root);
         setFullSecreen(false);
         statusLayoutManager = StatusLayoutManager.newBuilder(this)
@@ -68,20 +64,24 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         flContent.addView(statusLayoutManager.getRootLayout());
         unbinder = ButterKnife.bind(this);
         statusLayoutManager.showContent();
-        setToolbarVisible(false);
     }
 
     protected void init() {
         activity = this;
         context = this;
-        App.getInstance().registerActivity(this);
+        ActivityManagerUtils.getInstance().addActivity(this);
+        root = View.inflate(this, R.layout.activity_base, null);
+        toolbar= (Toolbar) root.findViewById(R.id.toolbar);
+        textTitle= (TextView) root.findViewById(R.id.text_title);
+        flContent = (FrameLayout) root.findViewById(R.id.fl_content);
+        setToolbarVisible(false);
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        App.getInstance().unregisterActivity(this);
+        ActivityManagerUtils.getInstance().removeActivity(this);
         if (unbinder != null) {
             unbinder.unbind();
         }

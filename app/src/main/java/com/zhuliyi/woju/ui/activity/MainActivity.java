@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zhuliyi.woju.R;
-import com.zhuliyi.woju.app.App;
 import com.zhuliyi.woju.base.BaseActivity;
 import com.zhuliyi.woju.common.CommonOnPageChangeListener;
 import com.zhuliyi.woju.common.FragmentPagerAdapter;
@@ -22,6 +21,7 @@ import com.zhuliyi.woju.ui.fragment.CircleFragment;
 import com.zhuliyi.woju.ui.fragment.FindFragment;
 import com.zhuliyi.woju.ui.fragment.MineFragment;
 import com.zhuliyi.woju.ui.fragment.NewsFragment;
+import com.zhuliyi.woju.utils.ActivityManagerUtils;
 
 import java.util.ArrayList;
 
@@ -168,7 +168,7 @@ public class MainActivity extends BaseActivity {
             Toast.makeText(context, "再按一次退出", Toast.LENGTH_SHORT).show();
             firstTime = secondTime;
         } else {
-            App.getInstance().exitApp();
+            ActivityManagerUtils.getInstance().exit();
         }
     }
 

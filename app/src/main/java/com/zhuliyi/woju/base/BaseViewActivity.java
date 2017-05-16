@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.zhuliyi.woju.app.App;
+import com.zhuliyi.woju.utils.ActivityManagerUtils;
 
 import butterknife.Unbinder;
 
@@ -32,7 +32,7 @@ public abstract class BaseViewActivity<T extends BasePresenter> extends AppCompa
     protected void init() {
         setTranslucentStatus(true);
         onPreCreate();
-        App.getInstance().registerActivity(this);
+        ActivityManagerUtils.getInstance().addActivity(this);
     }
 
     @Override
@@ -64,7 +64,7 @@ public abstract class BaseViewActivity<T extends BasePresenter> extends AppCompa
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        App.getInstance().unregisterActivity(this);
+        ActivityManagerUtils.getInstance().removeActivity(this);
         if (unbinder != null)
             unbinder.unbind();
         mPresenter = null;

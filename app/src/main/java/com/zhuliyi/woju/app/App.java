@@ -28,7 +28,7 @@ public class App extends Application {
 
     public void registerActivity(Activity act) {
         if (allActivities == null) {
-            allActivities = new HashSet<Activity>();
+            allActivities = new HashSet<>();
         }
         allActivities.add(act);
     }
@@ -51,6 +51,5 @@ public class App extends Application {
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(0);
     }
-
 
 }
