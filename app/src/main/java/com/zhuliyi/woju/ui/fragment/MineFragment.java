@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import com.zhuliyi.woju.R;
 import com.zhuliyi.woju.base.BaseFragment;
+import com.zhuliyi.woju.ui.activity.AboutActivity;
+import com.zhuliyi.woju.ui.activity.AccountActivity;
 import com.zhuliyi.woju.ui.activity.SettingActivity;
 
 import butterknife.ButterKnife;
@@ -45,13 +47,19 @@ public class MineFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.bill, R.id.setting})
+    @OnClick({R.id.ll_account,R.id.bill, R.id.setting,R.id.about})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.ll_account:
+                startActivity(new Intent(context, AccountActivity.class));
+                break;
             case R.id.bill:
                 break;
             case R.id.setting:
                 startActivity(new Intent(context, SettingActivity.class));
+                break;
+            case R.id.about:
+                startActivity(new Intent(context, AboutActivity.class));
                 break;
         }
     }

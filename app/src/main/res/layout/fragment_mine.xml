@@ -3,6 +3,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:fillViewport="true"
+    android:scrollbars="none"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -11,8 +12,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
+            android:id="@+id/ll_account"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
+            android:background="@drawable/selector_gray"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
@@ -223,27 +226,6 @@
                 android:text="房间管理"
                 android:textColor="@color/text"/>
         </RelativeLayout>
-        <RelativeLayout
-            android:background="@color/bg_white"
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/contract"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
-                android:text="合同"
-                android:textColor="@color/text"/>
-        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/setting"
@@ -267,11 +249,32 @@
                 android:text="设置"
                 android:textColor="@color/text"/>
         </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/about"
+            android:background="@drawable/selector_gray"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
 
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/about"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="64dp"
+                android:text="关于蜗信"
+                android:textColor="@color/text"/>
+        </RelativeLayout>
         <TextView
             android:gravity="center"
             android:textColor="@color/text_low"
-            android:text="版权归窝居所有"
+            android:text="版权归窝信所有"
             android:layout_width="match_parent"
             android:layout_height="56dp"/>
     </LinearLayout>
