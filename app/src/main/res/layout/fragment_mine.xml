@@ -77,9 +77,10 @@
              android:layout_width="match_parent"
              android:layout_height="wrap_content">
              <LinearLayout
+                 android:id="@+id/ll_balance"
                  android:layout_gravity="center"
                  android:gravity="center"
-                 android:background="@drawable/shape_balance_circle"
+                 android:background="@drawable/selector_balance_circle"
                  android:orientation="vertical"
                  android:layout_width="72dp"
                  android:layout_height="72dp">
@@ -100,9 +101,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
+                    android:id="@+id/ll_rent"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:background="@drawable/shape_rent_circle"
+                    android:background="@drawable/selector_rent_circle"
                     android:orientation="vertical"
                     android:layout_width="72dp"
                     android:layout_height="72dp">
@@ -123,9 +125,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
+                    android:id="@+id/ll_deposit"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:background="@drawable/shape_deposit_circle"
+                    android:background="@drawable/selector_deposit_circle"
                     android:orientation="vertical"
                     android:layout_width="72dp"
                     android:layout_height="72dp">
@@ -144,7 +147,7 @@
         </LinearLayout>
         <RelativeLayout
             android:id="@+id/bill"
-            android:background="@color/bg_white"
+            android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp">
 

@@ -10,6 +10,9 @@ import com.zhuliyi.woju.R;
 import com.zhuliyi.woju.base.BaseFragment;
 import com.zhuliyi.woju.ui.activity.AboutActivity;
 import com.zhuliyi.woju.ui.activity.AccountActivity;
+import com.zhuliyi.woju.ui.activity.BalanceActivity;
+import com.zhuliyi.woju.ui.activity.BillActivity;
+import com.zhuliyi.woju.ui.activity.RentActivity;
 import com.zhuliyi.woju.ui.activity.SettingActivity;
 
 import butterknife.ButterKnife;
@@ -47,13 +50,20 @@ public class MineFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.ll_account,R.id.bill, R.id.setting,R.id.about})
+    @OnClick({R.id.ll_account,R.id.ll_balance,R.id.ll_rent,R.id.bill, R.id.setting,R.id.about})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_account:
                 startActivity(new Intent(context, AccountActivity.class));
                 break;
+            case R.id.ll_balance:
+                startActivity(new Intent(context, BalanceActivity.class));
+                break;
+            case R.id.ll_rent:
+                startActivity(new Intent(context, RentActivity.class));
+                break;
             case R.id.bill:
+                startActivity(new Intent(context, BillActivity.class));
                 break;
             case R.id.setting:
                 startActivity(new Intent(context, SettingActivity.class));

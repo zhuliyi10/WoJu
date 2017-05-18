@@ -16,9 +16,9 @@
     <color name="blue_300">#91a7ff</color>
     <color name="blue_700">#1976D2</color>
 
-    <color name="green_base">#98c710</color>
-    <color name="green_300">#42bd41</color>
-    <color name="green_700">#42bd41</color>
+    <color name="green_base">#4CAF50</color>
+    <color name="green_300">#81C784</color>
+    <color name="green_700">#388E3C</color>
 
     <color name="yellow_base">#ffeb3b</color>
     <color name="yellow_300">#fff176</color>

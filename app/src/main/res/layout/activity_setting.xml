@@ -216,7 +216,8 @@
         android:background="@color/bg_grey"
         android:layout_width="match_parent"
         android:layout_height="100dp">
-        <TextView
+        <Button
+            android:id="@+id/btn_logout"
             android:textSize="20sp"
             android:text="退 出 账 户"
             android:gravity="center"

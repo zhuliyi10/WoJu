@@ -45,6 +45,12 @@
         </activity>
         <activity android:name=".ui.activity.AboutActivity">
         </activity>
+        <activity android:name=".ui.activity.BillActivity">
+        </activity>
+        <activity android:name=".ui.activity.BalanceActivity">
+        </activity>
+        <activity android:name=".ui.activity.RentActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -45,7 +45,11 @@
                 android:textColor="@color/text"
                 android:textSize="16sp"/>
         </LinearLayout>
-        <include layout="@layout/divider"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:background="@color/item_line"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -65,7 +69,11 @@
                 android:textColor="@color/text"
                 android:textSize="16sp"/>
         </LinearLayout>
-        <include layout="@layout/divider"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:background="@color/item_line"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -85,7 +93,6 @@
                 android:textColor="@color/text"
                 android:textSize="16sp"/>
         </LinearLayout>
-        <include layout="@layout/divider"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -124,7 +131,11 @@
                 android:textColor="@color/text"
                 android:textSize="16sp"/>
         </LinearLayout>
-        <include layout="@layout/divider"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:background="@color/item_line"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -144,5 +155,10 @@
                 android:textColor="@color/text"
                 android:textSize="16sp"/>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:background="@color/item_line"/>
     </LinearLayout>
 </ScrollView>

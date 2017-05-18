@@ -12,6 +12,7 @@
     <color name="bg_grey">#ececec</color>//灰色背景
     <color name="bg_white">#ffffff</color>
     <color name="divider">#dddddd</color>//分隔线的颜色
+    <color name="item_line">#ececec</color>//item内的颜色
     <color name="bg_grey_press">#dddddd</color>
 
     <array name="colors">
