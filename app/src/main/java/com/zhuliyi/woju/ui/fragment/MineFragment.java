@@ -12,6 +12,7 @@ import com.zhuliyi.woju.ui.activity.AboutActivity;
 import com.zhuliyi.woju.ui.activity.AccountActivity;
 import com.zhuliyi.woju.ui.activity.BalanceActivity;
 import com.zhuliyi.woju.ui.activity.BillActivity;
+import com.zhuliyi.woju.ui.activity.DepositActivity;
 import com.zhuliyi.woju.ui.activity.RentActivity;
 import com.zhuliyi.woju.ui.activity.SettingActivity;
 
@@ -50,7 +51,7 @@ public class MineFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.ll_account,R.id.ll_balance,R.id.ll_rent,R.id.bill, R.id.setting,R.id.about})
+    @OnClick({R.id.ll_account,R.id.ll_balance,R.id.ll_rent,R.id.ll_deposit,R.id.bill, R.id.setting,R.id.about})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_account:
@@ -61,6 +62,9 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.ll_rent:
                 startActivity(new Intent(context, RentActivity.class));
+                break;
+            case R.id.ll_deposit:
+                startActivity(new Intent(context, DepositActivity.class));
                 break;
             case R.id.bill:
                 startActivity(new Intent(context, BillActivity.class));

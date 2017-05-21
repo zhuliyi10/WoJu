@@ -51,6 +51,8 @@
         </activity>
         <activity android:name=".ui.activity.RentActivity">
         </activity>
+        <activity android:name=".ui.activity.DepositActivity">
+        </activity>
     </application>
 
 </manifest>
