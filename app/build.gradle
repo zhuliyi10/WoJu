@@ -54,4 +54,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.5'
     testCompile 'junit:junit:4.12'
 
+    compile 'com.makeramen:roundedimageview:2.3.0'
 }

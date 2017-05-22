@@ -5,17 +5,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.zhuliyi.woju.R;
 import com.zhuliyi.woju.base.BaseFragment;
+import com.zhuliyi.woju.data.preference.LoginPreference;
 import com.zhuliyi.woju.ui.activity.AboutActivity;
 import com.zhuliyi.woju.ui.activity.AccountActivity;
 import com.zhuliyi.woju.ui.activity.BalanceActivity;
 import com.zhuliyi.woju.ui.activity.BillActivity;
 import com.zhuliyi.woju.ui.activity.DepositActivity;
+import com.zhuliyi.woju.ui.activity.LoginActivity;
 import com.zhuliyi.woju.ui.activity.RentActivity;
 import com.zhuliyi.woju.ui.activity.SettingActivity;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
@@ -27,6 +32,12 @@ import butterknife.Unbinder;
 
 public class MineFragment extends BaseFragment {
     Unbinder unbinder;
+    @BindView(R.id.img_head)
+    RoundedImageView imgHead;
+    @BindView(R.id.text_nick)
+    TextView textNick;
+    @BindView(R.id.text_signature)
+    TextView textSignature;
 
     @Override
     protected int getLayoutId() {
@@ -35,6 +46,13 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        judgeLogin();
     }
 
     @Override
@@ -51,8 +69,12 @@ public class MineFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.ll_account,R.id.ll_balance,R.id.ll_rent,R.id.ll_deposit,R.id.bill, R.id.setting,R.id.about})
-    public void onViewClicked(View view) {
+    @OnClick({R.id.ll_account, R.id.ll_balance, R.id.ll_rent, R.id.ll_deposit, R.id.bill, R.id.setting})
+    public void needLogin(View view) {
+        if(!LoginPreference.getLoginState()){
+            startActivity(new Intent(context, LoginActivity.class));
+            return;
+        }
         switch (view.getId()) {
             case R.id.ll_account:
                 startActivity(new Intent(context, AccountActivity.class));
@@ -72,9 +94,27 @@ public class MineFragment extends BaseFragment {
             case R.id.setting:
                 startActivity(new Intent(context, SettingActivity.class));
                 break;
+
+        }
+    }
+    @OnClick({R.id.about})
+    public void noNeedLogin(View view){
+        switch (view.getId()){
             case R.id.about:
                 startActivity(new Intent(context, AboutActivity.class));
                 break;
+        }
+    }
+
+    private void judgeLogin() {
+        if (LoginPreference.getLoginState()) {
+            imgHead.setImageResource(R.drawable.mine_head);
+            textNick.setText("柳岩");
+            textSignature.setText("我就是我，不一样的烟火");
+        }else {
+            imgHead.setImageResource(R.drawable.default_head);
+            textNick.setText("立即登陆");
+            textSignature.setText("登陆后可享受更多特权");
         }
     }
 }

@@ -15,16 +15,22 @@
             android:id="@+id/ll_account"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:background="@drawable/selector_gray"
+            android:background="@color/colorPrimary"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="72dp">
-            <ImageView
-                android:src="@drawable/mine_head"
-                android:scaleType="fitCenter"
-                android:layout_width="56dp"
-                android:layout_height="56dp"/>
+            android:layout_height="112dp">
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/img_head"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:src="@drawable/default_head"
+                app:riv_corner_radius="36dip"
+                app:riv_border_width="2dp"
+                app:riv_border_color="@color/white"
+                app:riv_mutate_background="true"
+                app:riv_oval="true"
+                android:layout_height="72dp"
+                android:layout_width="72dp"/>
             <LinearLayout
                 android:layout_weight="1"
                 android:layout_marginLeft="8dp"
@@ -32,8 +38,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textColor="@color/text"
-                    android:text="柳岩"
+                    android:id="@+id/text_nick"
+                    android:textColor="@color/white"
+                    android:text="立即登陆"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <LinearLayout
@@ -42,14 +49,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:text="状态：未认证"
+                        android:id="@+id/text_signature"
+                        android:text="登陆后可享受更多特权"
                         android:layout_weight="1"
-                        android:textColor="@color/text_low"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="去认证"
-                        android:textColor="@color/blue_700"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -61,7 +64,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"/>
             <ImageView
-                android:src="@drawable/arrow_right"
+                android:src="@drawable/arrow_right_whtie"
                 android:layout_marginLeft="8dp"
                 android:layout_width="24dp"
                 android:layout_height="24dp"/>

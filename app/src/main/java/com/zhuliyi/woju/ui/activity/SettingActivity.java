@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.zhuliyi.woju.R;
 import com.zhuliyi.woju.base.SwipeBackActivity;
+import com.zhuliyi.woju.data.preference.LoginPreference;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -24,6 +25,7 @@ public class SettingActivity extends SwipeBackActivity {
 
     @OnClick(R.id.btn_logout)
     public void onViewClicked() {
+        LoginPreference.saveLoginState(false);
         finish();
     }
 }
