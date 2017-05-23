@@ -167,6 +167,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="64dp"
                 android:text="账单"
+                android:textSize="16sp"
                 android:textColor="@color/text"/>
         </RelativeLayout>
         <RelativeLayout
@@ -188,6 +189,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="64dp"
                 android:text="我的窝圈"
+                android:textSize="16sp"
                 android:textColor="@color/text"/>
         </RelativeLayout>
         <RelativeLayout
@@ -209,6 +211,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="64dp"
                 android:text="我的小楼"
+                android:textSize="16sp"
                 android:textColor="@color/text"/>
         </RelativeLayout>
         <RelativeLayout
@@ -230,6 +233,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="64dp"
                 android:text="房间管理"
+                android:textSize="16sp"
                 android:textColor="@color/text"/>
         </RelativeLayout>
 
@@ -253,6 +257,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="64dp"
                 android:text="设置"
+                android:textSize="16sp"
                 android:textColor="@color/text"/>
         </RelativeLayout>
         <RelativeLayout
@@ -275,6 +280,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="64dp"
                 android:text="关于蜗信"
+                android:textSize="16sp"
                 android:textColor="@color/text"/>
         </RelativeLayout>
         <TextView

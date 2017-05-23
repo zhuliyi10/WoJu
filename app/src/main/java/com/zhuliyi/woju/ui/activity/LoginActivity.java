@@ -1,7 +1,10 @@
 package com.zhuliyi.woju.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -36,6 +39,18 @@ public class LoginActivity extends SwipeBackActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         textTitle.setText("登陆");
+        toolbar.inflateMenu(R.menu.login_verification);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.sms:
+                        startActivity(new Intent(context,SmsActivity.class));
+                        break;
+                }
+                return true;
+            }
+        });
         String account=LoginPreference.getAcount();
         if(!account.isEmpty()) {
             etAccount.setText(account);
