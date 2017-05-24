@@ -2,6 +2,8 @@ package com.zhuliyi.woju.utils;
 
 import android.app.Activity;
 
+import com.zhuliyi.woju.ui.activity.MainActivity;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -71,5 +73,12 @@ public class ActivityManagerUtils {
 
         System.exit(0);
     }
-
+    public void removeActivityExceptMain(){
+        for(int i=activityList.size()-1;i>=0;i--){
+            Activity activity=activityList.get(i);
+            if(!(activity instanceof MainActivity)) {
+                activity.finish();
+            }
+        }
+    }
 }

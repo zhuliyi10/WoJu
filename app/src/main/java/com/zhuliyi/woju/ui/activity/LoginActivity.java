@@ -85,6 +85,7 @@ public class LoginActivity extends SwipeBackActivity {
                 }
                 break;
             case R.id.text_forget:
+                startActivity(new Intent(context,PwdForgetActivity.class));
                 break;
         }
     }

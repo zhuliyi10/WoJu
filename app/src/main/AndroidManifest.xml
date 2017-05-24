@@ -14,6 +14,17 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
 
+
+    //友盟分享、登陆
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <!-- <uses-permission  android:name="android.permission.CALL_PHONE" /> -->
     <application
         android:name=".app.App"
@@ -55,8 +66,67 @@
         </activity>
         <activity android:name=".ui.activity.LoginActivity">
         </activity>
+        <activity android:name=".ui.activity.PwdForgetActivity">
+        </activity>
+        <activity android:name=".ui.activity.PwdSetActivity">
+        </activity>
         <activity android:name=".ui.activity.SmsActivity">
         </activity>
+
+
+
+        //!-- 友盟所用的 开始 -->
+        <!-- 设置友盟appid -->
+        <!-- 友盟所用的 开始 -->
+        <!-- 设置友盟appid -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="${UMENG_APPKEY}" />
+
+        <!--<activity-->
+            <!--android:name="com.umeng.socialize.editorpage.ShareActivity"-->
+            <!--android:excludeFromRecents="true"-->
+            <!--android:theme="@style/Theme.UMDefault" />-->
+        <!-- 微博平台 -->
+        <activity
+            android:name=".wbapi.WBShareActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+        <!-- 微信平台 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- QQ、Qzone -->
+        <activity
+            android:name="com.umeng.qq.tencent.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.umeng.qq.tencent.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 
 </manifest>

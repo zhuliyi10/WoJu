@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 11
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    //v6.4.4
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/SocialSDK_QQ_Simplify.jar')
+    compile files('libs/SocialSDK_Sina_Simplify.jar')
+    compile files('libs/SocialSDK_WeChat_Simplify.jar')
+    compile files('libs/umeng_social_api.jar')
+    compile files('libs/umeng_social_net.jar')
+    compile files('libs/umeng_social_tool.jar')
+}

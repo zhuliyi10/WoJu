@@ -3,11 +3,12 @@ apply plugin: 'android-apt'
 
 android {
     signingConfigs {
-        zhuliyi {
+
+        woxin {
             keyAlias 'leory'
-            keyPassword '123456'
-            storeFile file('D:/commonData/SportsFace/sign/zhuliyi.jks')
-            storePassword '123456'
+            keyPassword 'woxin20170101'
+            storeFile file('D:/commonData/GitHutProject/sign/woxin.jks')
+            storePassword 'woxin20170101'
         }
     }
     compileSdkVersion 25
@@ -18,23 +19,31 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+
+
+        manifestPlaceholders.put("UMENG_APPKEY", "5925ab03ae1bf82fcf0013e6")//友盟APPKEY
+        buildConfigField "String", "WEIXIN_APP_ID", "\"wxd5a3f61b58a73d2c\""
+        buildConfigField "String", "WEIXIN_APP_SECRET", "\"12cf5af99bb8aae930c876c0e3d8e486\""
+        buildConfigField "String", "QQ_APP_ID", "\"1106185494\""
+        buildConfigField "String", "QQ_APP_KEY", "\"dOYGja3xKhgY72Zz\""
+        buildConfigField "String", "SINA_APP_KEY", "\"3260081040\""
+        buildConfigField "String", "SINA_APP_SECRET", "\"87e9493964eaa7c05de79c63c08a4b4c\""
     }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.zhuliyi
+            signingConfig signingConfigs.woxin
         }
         debug {
             applicationIdSuffix '.debug'
-            signingConfig signingConfigs.zhuliyi
+            signingConfig signingConfigs.woxin
         }
     }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'
     //recyclerview从24后用appcompat中分离出来
@@ -47,12 +56,12 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
     //圆形
-//    compile 'com.makeramen:roundedimageview:2.3.0'
+    //    compile 'com.makeramen:roundedimageview:2.3.0'
     //baseAdapter
     compile 'com.zhy:base-rvadapter:3.0.3'
     //解析json
     compile 'com.google.code.gson:gson:2.5'
     testCompile 'junit:junit:4.12'
-
     compile 'com.makeramen:roundedimageview:2.3.0'
+    compile project(':umeng_android_social_sdk')
 }

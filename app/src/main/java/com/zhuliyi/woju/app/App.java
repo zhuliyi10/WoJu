@@ -4,6 +4,9 @@ package com.zhuliyi.woju.app;
 import android.app.Activity;
 import android.app.Application;
 
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,9 +26,22 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
+        initUmengSocial();
     }
 
+    /**
+     * 初始化友盟第三方社会化设置
+     */
+    private void initUmengSocial(){
+        UMShareAPI.get(this);
+//        Config.DEBUG = true;
+        //微信 appid appsecret
+        PlatformConfig.setWeixin(Config.WEIXIN_APP_ID, Config.WEIXIN_APP_SECRET);
+        //qq和qq空间 appid appkey
+        PlatformConfig.setQQZone(Config.QQ_APP_ID,Config.QQ_APP_KEY);
+        //新浪微博 appid appsecret
+        PlatformConfig.setSinaWeibo(Config.SINA_APP_KEY,Config.SINA_APP_SECRET,"http://www.sportsface.cn");
+    }
     public void registerActivity(Activity act) {
         if (allActivities == null) {
             allActivities = new HashSet<>();
