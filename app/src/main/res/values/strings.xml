@@ -9,4 +9,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_chat">ChatActivity</string>
     <string name="login_tip">温馨提示，未注册蜗居的手机号，登陆时将自动注册</string>
+    <string name="login_no_sign">该家伙很偷懒，一点痕迹也不留下</string>
 </resources>

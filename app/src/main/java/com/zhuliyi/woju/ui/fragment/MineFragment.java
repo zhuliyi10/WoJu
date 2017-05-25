@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.zhuliyi.woju.R;
 import com.zhuliyi.woju.base.BaseFragment;
@@ -108,9 +109,28 @@ public class MineFragment extends BaseFragment {
 
     private void judgeLogin() {
         if (LoginPreference.getLoginState()) {
-            imgHead.setImageResource(R.drawable.mine_head);
-            textNick.setText("柳岩");
-            textSignature.setText("我就是我，不一样的烟火");
+            switch (LoginPreference.getLoginType()){
+                case LoginPreference.LOGIN_TYPE_PHONE:
+                case LoginPreference.LOGIN_TYPE_WOXINNO:
+                    //通过type ,account和pwd请求登陆
+                    break;
+                case LoginPreference.LOGIN_TYPE_WECHAT:
+                case LoginPreference.LOGIN_TYPE_QQ:
+                case LoginPreference.LOGIN_TYPE_SINA:
+                    //通过type 和account请求登陆
+                    break;
+            }
+            String name=LoginPreference.getName();
+            String iconUrl=LoginPreference.getIconUrl();
+            if(!name.isEmpty()){
+                textNick.setText(name);
+            }else {
+                textNick.setText("");
+            }
+            if(!iconUrl.isEmpty()){
+                Glide.with(context).load(iconUrl).into(imgHead);
+            }
+            textSignature.setText(context.getResources().getString(R.string.login_no_sign));
         }else {
             imgHead.setImageResource(R.drawable.default_head);
             textNick.setText("立即登陆");

@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.zhuliyi.woju.R;
 import com.zhuliyi.woju.base.SwipeBackActivity;
 import com.zhuliyi.woju.callback.TextWatcherListener;
+import com.zhuliyi.woju.data.preference.LoginPreference;
 import com.zhuliyi.woju.utils.ActivityManagerUtils;
 import com.zhuliyi.woju.utils.ToastUtil;
 import com.zhuliyi.woju.utils.VerificationUtils;
@@ -105,6 +106,9 @@ public class SmsActivity extends SwipeBackActivity {
                     ToastUtil.showShort(context,"验证码不能为空");
                 }else if(etPhone.getText().toString().equals("13250751496")&&etCode.getText().toString().equals("1111")){
                     ToastUtil.showShort(context,"登陆成功");
+                    LoginPreference.saveLoginState(true);
+                    LoginPreference.saveLoginType(LoginPreference.LOGIN_TYPE_PHONE);
+                    LoginPreference.saveAccount(etPhone.getText().toString());
                     ActivityManagerUtils.getInstance().removeActivityExceptMain();
                 }else {
                     ToastUtil.showShort(context,"手机号：13250751496\n验证码：1111");

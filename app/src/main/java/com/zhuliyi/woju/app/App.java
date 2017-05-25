@@ -40,7 +40,7 @@ public class App extends Application {
         //qq和qq空间 appid appkey
         PlatformConfig.setQQZone(Config.QQ_APP_ID,Config.QQ_APP_KEY);
         //新浪微博 appid appsecret
-        PlatformConfig.setSinaWeibo(Config.SINA_APP_KEY,Config.SINA_APP_SECRET,"http://www.sportsface.cn");
+        PlatformConfig.setSinaWeibo(Config.SINA_APP_KEY,Config.SINA_APP_SECRET,"http://www.dwelling.cn");
     }
     public void registerActivity(Activity act) {
         if (allActivities == null) {

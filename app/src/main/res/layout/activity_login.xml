@@ -98,6 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
+                    android:id="@+id/login_whchat"
                     android:src="@drawable/login_wechat"
                     android:layout_width="32dp"
                     android:layout_height="32dp"/>
@@ -116,6 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
+                    android:id="@+id/login_qq"
                     android:src="@drawable/login_qq"
                     android:layout_width="32dp"
                     android:layout_height="32dp"/>
@@ -134,6 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
+                    android:id="@+id/login_weibo"
                     android:src="@drawable/login_weibo"
                     android:layout_width="32dp"
                     android:layout_height="32dp"/>
