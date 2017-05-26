@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +26,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 
 /**
  * 首页-我的
@@ -39,6 +44,10 @@ public class MineFragment extends BaseFragment {
     TextView textNick;
     @BindView(R.id.text_signature)
     TextView textSignature;
+    @BindView(R.id.rotate_header_web_view_frame)
+    PtrClassicFrameLayout ptrFrame;
+    @BindView(R.id.scrollView)
+    ScrollView scrollView;
 
     @Override
     protected int getLayoutId() {
@@ -47,7 +56,37 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        ptrFrame.setLastUpdateTimeRelateObject(this);
+        ptrFrame.setResistance(1.7f);
+        ptrFrame.setRatioOfHeaderHeightToRefresh(1.2f);
+        ptrFrame.setDurationToClose(500);
+        ptrFrame.setDurationToCloseHeader(1000);
+        // default is false
+        ptrFrame.setPullToRefresh(false);
+        // default is true
+        ptrFrame.setKeepHeaderWhenRefresh(true);
+        ptrFrame.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ptrFrame.autoRefresh();
+            }
+        }, 100);
+        ptrFrame.setPtrHandler(new PtrHandler() {
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, scrollView, header);
+            }
 
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                ptrFrame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ptrFrame.refreshComplete();
+                    }
+                }, 300);
+            }
+        });
     }
 
     @Override
@@ -72,7 +111,7 @@ public class MineFragment extends BaseFragment {
 
     @OnClick({R.id.ll_account, R.id.ll_balance, R.id.ll_rent, R.id.ll_deposit, R.id.bill, R.id.setting})
     public void needLogin(View view) {
-        if(!LoginPreference.getLoginState()){
+        if (!LoginPreference.getLoginState()) {
             startActivity(new Intent(context, LoginActivity.class));
             return;
         }
@@ -98,9 +137,10 @@ public class MineFragment extends BaseFragment {
 
         }
     }
+
     @OnClick({R.id.about})
-    public void noNeedLogin(View view){
-        switch (view.getId()){
+    public void noNeedLogin(View view) {
+        switch (view.getId()) {
             case R.id.about:
                 startActivity(new Intent(context, AboutActivity.class));
                 break;
@@ -109,7 +149,7 @@ public class MineFragment extends BaseFragment {
 
     private void judgeLogin() {
         if (LoginPreference.getLoginState()) {
-            switch (LoginPreference.getLoginType()){
+            switch (LoginPreference.getLoginType()) {
                 case LoginPreference.LOGIN_TYPE_PHONE:
                 case LoginPreference.LOGIN_TYPE_WOXINNO:
                     //通过type ,account和pwd请求登陆
@@ -120,18 +160,18 @@ public class MineFragment extends BaseFragment {
                     //通过type 和account请求登陆
                     break;
             }
-            String name=LoginPreference.getName();
-            String iconUrl=LoginPreference.getIconUrl();
-            if(!name.isEmpty()){
+            String name = LoginPreference.getName();
+            String iconUrl = LoginPreference.getIconUrl();
+            if (!name.isEmpty()) {
                 textNick.setText(name);
-            }else {
+            } else {
                 textNick.setText("");
             }
-            if(!iconUrl.isEmpty()){
+            if (!iconUrl.isEmpty()) {
                 Glide.with(context).load(iconUrl).into(imgHead);
             }
             textSignature.setText(context.getResources().getString(R.string.login_no_sign));
-        }else {
+        } else {
             imgHead.setImageResource(R.drawable.default_head);
             textNick.setText("立即登陆");
             textSignature.setText("登陆后可享受更多特权");
