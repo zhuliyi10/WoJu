@@ -30,7 +30,7 @@ public class WelcomeActivity extends BaseActivity<WelcomeContract.Presenter> imp
 
     @Override
     public void showContent(String path, Animation animation) {
-        Glide.with(context).load(R.drawable.c).animate(animation).into(ivWelcomeBg);
+        Glide.with(context).load(R.drawable.bg_page_portrait).crossFade().into(ivWelcomeBg);
     }
 
     @Override

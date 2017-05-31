@@ -18,7 +18,7 @@ android {
         minSdkVersion 11
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0_2"
 
 
         manifestPlaceholders.put("UMENG_APPKEY", "5925ab03ae1bf82fcf0013e6")//友盟APPKEY
@@ -41,7 +41,20 @@ android {
         }
     }
 }
+//这里是导出apk文件的路径
+def outputPathName = "D:\\commonData\\dwelling\\apks"
+android.applicationVariants.all { variant ->
+    variant.outputs.each { output ->
+        if ("release".equals(variant.buildType.name)) {
+        def apkFile = new File(
+                outputPathName,
+                "DwellingMessage_v${variant.versionName}.apk")
+        output.outputFile = apkFile
+    }
+    }
 
+
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.2.0'
@@ -52,6 +65,8 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     //图片加载
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    //极限且灵活的图像裁剪体验
+//    compile 'com.github.yalantis:ucrop:2.2.1' //- lightweight general solution
     //异步操作
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
@@ -66,4 +81,6 @@ dependencies {
     compile project(':umeng_android_social_sdk')
     // https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh
     compile 'in.srain.cube:ultra-ptr:1.0.11'
+
+
 }

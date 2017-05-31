@@ -19,17 +19,20 @@ import com.zhuliyi.woju.ui.activity.BalanceActivity;
 import com.zhuliyi.woju.ui.activity.BillActivity;
 import com.zhuliyi.woju.ui.activity.DepositActivity;
 import com.zhuliyi.woju.ui.activity.LoginActivity;
+import com.zhuliyi.woju.ui.activity.MineBuildingActivity;
+import com.zhuliyi.woju.ui.activity.MineCircleActivity;
 import com.zhuliyi.woju.ui.activity.RentActivity;
 import com.zhuliyi.woju.ui.activity.SettingActivity;
+import com.zhuliyi.woju.utils.ScreenUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
+import in.srain.cube.views.ptr.header.StoreHouseHeader;
 
 /**
  * 首页-我的
@@ -44,8 +47,8 @@ public class MineFragment extends BaseFragment {
     TextView textNick;
     @BindView(R.id.text_signature)
     TextView textSignature;
-    @BindView(R.id.rotate_header_web_view_frame)
-    PtrClassicFrameLayout ptrFrame;
+    @BindView(R.id.store_house_ptr_frame)
+    PtrFrameLayout frame;
     @BindView(R.id.scrollView)
     ScrollView scrollView;
 
@@ -56,35 +59,27 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        ptrFrame.setLastUpdateTimeRelateObject(this);
-        ptrFrame.setResistance(1.7f);
-        ptrFrame.setRatioOfHeaderHeightToRefresh(1.2f);
-        ptrFrame.setDurationToClose(500);
-        ptrFrame.setDurationToCloseHeader(1000);
-        // default is false
-        ptrFrame.setPullToRefresh(false);
-        // default is true
-        ptrFrame.setKeepHeaderWhenRefresh(true);
-        ptrFrame.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ptrFrame.autoRefresh();
-            }
-        }, 100);
-        ptrFrame.setPtrHandler(new PtrHandler() {
+        StoreHouseHeader header = new StoreHouseHeader(getContext());
+        header.setPadding(0, ScreenUtil.dip2px(context,16), 0, ScreenUtil.dip2px(context,16));
+        header.initWithString(context.getResources().getString(R.string.head_refresh));
+        header.setLineWidth(ScreenUtil.dip2px(context,1.5f));
+        frame.setHeaderView(header);
+        frame.addPtrUIHandler(header);
+
+        frame.setPtrHandler(new PtrHandler() {
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
                 return PtrDefaultHandler.checkContentCanBePulledDown(frame, scrollView, header);
             }
 
             @Override
-            public void onRefreshBegin(PtrFrameLayout frame) {
-                ptrFrame.postDelayed(new Runnable() {
+            public void onRefreshBegin(final PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ptrFrame.refreshComplete();
+                        frame.refreshComplete();
                     }
-                }, 300);
+                }, 1000);
             }
         });
     }
@@ -109,7 +104,7 @@ public class MineFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.ll_account, R.id.ll_balance, R.id.ll_rent, R.id.ll_deposit, R.id.bill, R.id.setting})
+    @OnClick({R.id.ll_account, R.id.ll_balance, R.id.ll_rent, R.id.ll_deposit, R.id.bill,R.id.mine_circle,R.id.mine_building, R.id.setting})
     public void needLogin(View view) {
         if (!LoginPreference.getLoginState()) {
             startActivity(new Intent(context, LoginActivity.class));
@@ -130,6 +125,12 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.bill:
                 startActivity(new Intent(context, BillActivity.class));
+                break;
+            case R.id.mine_circle:
+                startActivity(new Intent(context, MineCircleActivity.class));
+                break;
+            case R.id.mine_building:
+                startActivity(new Intent(context, MineBuildingActivity.class));
                 break;
             case R.id.setting:
                 startActivity(new Intent(context, SettingActivity.class));

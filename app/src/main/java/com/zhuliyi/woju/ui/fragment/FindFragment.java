@@ -35,21 +35,12 @@ public class FindFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        final StoreHouseHeader header = new StoreHouseHeader(getContext());
+        StoreHouseHeader header = new StoreHouseHeader(getContext());
         header.setPadding(0, ScreenUtil.dip2px(context,16), 0, ScreenUtil.dip2px(context,16));
-        // using string array from resource xml file
-        header.initWithString("Dwelling Message");
-//        header.initWithString("Dwelling Message");
+        header.initWithString(context.getResources().getString(R.string.head_refresh));
         header.setLineWidth(ScreenUtil.dip2px(context,1.5f));
-        frame.setDurationToCloseHeader(1500);
         frame.setHeaderView(header);
         frame.addPtrUIHandler(header);
-        frame.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                frame.autoRefresh(false);
-            }
-        }, 100);
 
         frame.addPtrUIHandler(new PtrUIHandler() {
 
@@ -102,7 +93,7 @@ public class FindFragment extends BaseFragment {
                     public void run() {
                         frame.refreshComplete();
                     }
-                }, 2000);
+                }, 1000);
             }
         });
 

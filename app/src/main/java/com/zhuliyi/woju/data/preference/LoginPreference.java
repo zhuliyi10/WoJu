@@ -22,7 +22,7 @@ public class LoginPreference {
     private static final String LOGIN_STATE="login_state";//登陆状态
     private static final String LOGIN_TYPE="login_type";//登陆类型
     public static final int LOGIN_TYPE_PHONE=1;//手机号
-    public static final int LOGIN_TYPE_WOXINNO=2;//手机号
+    public static final int LOGIN_TYPE_WOXINNO=2;//蜗信号
     public static final int LOGIN_TYPE_WECHAT=3;//微信
     public static final int LOGIN_TYPE_QQ=4;//qq
     public static final int LOGIN_TYPE_SINA=5;//新浪微博

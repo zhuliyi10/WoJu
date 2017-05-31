@@ -98,8 +98,6 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.search:
-                        break;
                     case R.id.contact:
                         break;
                     case R.id.plus:

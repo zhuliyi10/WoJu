@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">窝居</string>
+    <string name="app_name">窝信</string>
     <string name="author">zhuliyi</string>
     <string name="news">消息</string>
     <string name="circle">蜗圈</string>
@@ -10,4 +10,5 @@
     <string name="title_activity_chat">ChatActivity</string>
     <string name="login_tip">温馨提示，未注册蜗居的手机号，登陆时将自动注册</string>
     <string name="login_no_sign">该家伙很偷懒，一点痕迹也不留下</string>
+    <string name="head_refresh">Dwelling</string>
 </resources>

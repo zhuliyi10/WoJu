@@ -141,3 +141,7 @@
 
 #----------------------友盟结束---------------------------------#
 
+#图片裁剪  uCrop
+-dontwarn com.yalantis.ucrop**
+-keep class com.yalantis.ucrop** { *; }
+-keep interface com.yalantis.ucrop** { *; }

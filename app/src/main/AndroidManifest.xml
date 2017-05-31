@@ -32,6 +32,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        tools:replace="android:icon,android:theme,android:label"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.MainActivity">
         </activity>
@@ -56,7 +57,13 @@
         </activity>
         <activity android:name=".ui.activity.AboutActivity">
         </activity>
+        <activity android:name=".ui.activity.UpdateTipsActivity">
+        </activity>
         <activity android:name=".ui.activity.BillActivity">
+        </activity>
+        <activity android:name=".ui.activity.MineCircleActivity">
+        </activity>
+        <activity android:name=".ui.activity.MineBuildingActivity">
         </activity>
         <activity android:name=".ui.activity.BalanceActivity">
         </activity>
@@ -75,7 +82,7 @@
 
 
 
-        //!-- 友盟所用的 开始 -->
+        <!-- 友盟所用的 开始 -->
         <!-- 设置友盟appid -->
         <!-- 友盟所用的 开始 -->
         <!-- 设置友盟appid -->
@@ -127,6 +134,9 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- 友盟所用的 结束 -->
+
+
     </application>
 
 </manifest>

@@ -1,11 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
         android:id="@+id/iv_welcome_bg"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="88dp">
+        <ImageView
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="56dp"
+            android:layout_height="56dp"/>
+        <LinearLayout
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="蜗信"
+                android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+            <TextView
+                android:text="为社区租客提供便利服务"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:gravity="center"
+        android:layout_marginBottom="16dp"
+        android:textSize="12sp"
+        android:textColor="@color/text_low"
+        android:text="All Rights Reserved Dwelling"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

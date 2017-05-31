@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     cube_ptr:ptr_duration_to_close="300"
-    cube_ptr:ptr_duration_to_close_header="2000"
+    cube_ptr:ptr_duration_to_close_header="1000"
     cube_ptr:ptr_keep_header_when_refresh="true"
     cube_ptr:ptr_pull_to_fresh="false"
     cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
@@ -164,6 +164,55 @@
 
             <TextView
                 android:text="快递代拿"
+                android:layout_marginLeft="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text"
+                android:textSize="16sp"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:background="@color/item_line"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp">
+
+            <ImageView
+                android:src="@drawable/find_interest"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+
+            <TextView
+                android:text="兴趣部落"
+                android:layout_marginLeft="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text"
+                android:textSize="16sp"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:background="@color/item_line"/>
+        android:background="@color/item_line"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp">
+
+            <ImageView
+                android:src="@drawable/find_share"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+
+            <TextView
+                android:text="物品共享"
                 android:layout_marginLeft="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

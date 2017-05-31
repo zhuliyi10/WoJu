@@ -18,7 +18,7 @@
     </style>
 
     <style name="StartTheme" parent="BaseAppTheme">
-        <item name="android:windowBackground">@drawable/c</item>
+        <item name="android:windowBackground">@color/bg_white</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowNoTitle">true</item>
 
