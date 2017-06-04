@@ -3,11 +3,10 @@ apply plugin: 'android-apt'
 
 android {
     signingConfigs {
-
         woxin {
             keyAlias 'leory'
             keyPassword 'woxin20170101'
-            storeFile file('D:/commonData/GitHutProject/sign/woxin.jks')
+            storeFile file('D:/commonData/GitHutProject/WoJu/app/woxin.jks')
             storePassword 'woxin20170101'
         }
     }
@@ -56,11 +55,10 @@ android.applicationVariants.all { variant ->
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     //recyclerview从24后用appcompat中分离出来
-//    compile 'com.android.support:recyclerview-v7:25.3.0'
+    //    compile 'com.android.support:recyclerview-v7:25.3.0'
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     //图片加载
@@ -83,7 +81,6 @@ dependencies {
     compile project(':umeng_android_social_sdk')
     // https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh
     compile 'in.srain.cube:ultra-ptr:1.0.11'
-
-    //对话框 https://github.com/afollestad/material-dialogs 高版本编译不过
-    compile 'com.afollestad.material-dialogs:commons:0.9.0.2'
+    //对话框 https://github.com/afollestad/material-dialogs
+    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
 }
