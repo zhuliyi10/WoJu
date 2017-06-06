@@ -163,6 +163,7 @@ public class MineFragment extends BaseFragment {
             }
             String name = LoginPreference.getName();
             String iconUrl = LoginPreference.getIconUrl();
+            String userSignature=LoginPreference.getUserSignature();
             if (!name.isEmpty()) {
                 textNick.setText(name);
             } else {
@@ -171,7 +172,11 @@ public class MineFragment extends BaseFragment {
             if (!iconUrl.isEmpty()) {
                 Glide.with(context).load(iconUrl).into(imgHead);
             }
-            textSignature.setText(context.getResources().getString(R.string.login_no_sign));
+            if(!userSignature.isEmpty()){
+                textSignature.setText(userSignature);
+            }else {
+                textSignature.setText(context.getResources().getString(R.string.login_no_sign));
+            }
         } else {
             imgHead.setImageResource(R.drawable.default_head);
             textNick.setText("立即登陆");

@@ -35,6 +35,7 @@
                     android:textColor="@color/text"/>
                 <com.makeramen.roundedimageview.RoundedImageView
                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/image_head"
                     android:src="@drawable/mine_head"
                     android:scaleType="fitCenter"
                     app:riv_corner_radius="36dip"
@@ -73,10 +74,15 @@
                     android:textColor="@color/text"/>
 
                 <TextView
+                    android:id="@+id/text_woxin_no"
                     android:textColor="@color/text_low"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="xiaofeifei"/>
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/image_woxin_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrow_right"/>
             </LinearLayout>
 
             <View
@@ -86,6 +92,7 @@
                 android:background="@color/item_line"/>
 
             <LinearLayout
+                android:id="@+id/ll_nick"
                 android:background="@drawable/selector_gray"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -102,10 +109,11 @@
                     android:textColor="@color/text"/>
 
                 <TextView
+                    android:id="@+id/text_nick"
                     android:textColor="@color/text_low"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="柳岩"/>
+                    android:text=""/>
 
                 <ImageView
                     android:layout_width="24dp"
@@ -120,26 +128,29 @@
                 android:background="@color/item_line"/>
 
             <LinearLayout
+                android:id="@+id/ll_signature"
                 android:background="@drawable/selector_gray"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="个性签名"
                     android:textColor="@color/text"/>
-
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
                 <TextView
+                    android:id="@+id/text_signature"
                     android:textColor="@color/text_low"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="我就是我，人间不一样的烟火"/>
+                    android:text=""/>
 
                 <ImageView
                     android:layout_width="24dp"
