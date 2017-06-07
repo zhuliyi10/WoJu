@@ -33,6 +33,7 @@ import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 import in.srain.cube.views.ptr.header.StoreHouseHeader;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * 首页-我的
@@ -170,7 +171,7 @@ public class MineFragment extends BaseFragment {
                 textNick.setText("");
             }
             if (!iconUrl.isEmpty()) {
-                Glide.with(context).load(iconUrl).into(imgHead);
+                Glide.with(context).load(iconUrl).placeholder(R.drawable.default_head).bitmapTransform(new CropCircleTransformation(context)).into(imgHead);
             }
             if(!userSignature.isEmpty()){
                 textSignature.setText(userSignature);

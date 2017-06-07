@@ -3,7 +3,7 @@
           xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-sdk tools:overrideLibrary="com.afollestad.materialdialogs" />
+    <uses-sdk tools:overrideLibrary="com.afollestad.materialdialogs," />
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -81,7 +81,8 @@
         </activity>
         <activity android:name=".ui.activity.SmsActivity">
         </activity>
-
+        <activity android:name=".ui.activity.QRCodeDetailActivity">
+        </activity>
 
         <!--Image Selector Entry-->
         <activity

@@ -41,6 +41,7 @@
                     app:riv_corner_radius="36dip"
                     app:riv_mutate_background="true"
                     app:riv_oval="false"
+                    android:adjustViewBounds="true"
                     android:layout_height="40dp"
                     android:layout_width="40dp"/>
 
@@ -165,6 +166,7 @@
                 android:background="@color/item_line"/>
 
             <LinearLayout
+                android:id="@+id/ll_qr_code"
                 android:background="@drawable/selector_gray"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -198,6 +200,7 @@
                 android:background="@color/item_line"/>
 
             <LinearLayout
+                android:id="@+id/ll_gender"
                 android:background="@drawable/selector_gray"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -214,10 +217,11 @@
                     android:textColor="@color/text"/>
 
                 <TextView
+                    android:id="@+id/text_gender"
                     android:textColor="@color/text_low"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="女"/>
+                    android:text=""/>
 
                 <ImageView
                     android:layout_width="24dp"
@@ -232,6 +236,7 @@
                 android:background="@color/item_line"/>
 
             <LinearLayout
+                android:id="@+id/ll_birthday"
                 android:background="@drawable/selector_gray"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -248,6 +253,7 @@
                     android:textColor="@color/text"/>
 
                 <TextView
+                    android:id="@+id/text_birthday"
                     android:textColor="@color/text_low"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

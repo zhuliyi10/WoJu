@@ -20,6 +20,7 @@ public class LoginPreference {
     private static final String GENDER="gender";//用户性别
     private static final String ICON_URL="icon_url";//用户头像
     private static final String USER_SIGNATURE="user_signature";//用户签名
+    private static final String BIRTHDAY="birthday";//生日 1992-3-20
     private static final String LOGIN_STATE="login_state";//登陆状态
     private static final String LOGIN_TYPE="login_type";//登陆类型
     public static final int LOGIN_TYPE_PHONE=1;//手机号
@@ -56,6 +57,9 @@ public class LoginPreference {
     public static void saveUserSignature(String userSignature){
         saveString(USER_SIGNATURE,userSignature);
     }
+    public static void saveBirthday(String birthday){
+        saveString(BIRTHDAY,birthday);
+    }
     public static void saveGender(String gender){
         saveString(GENDER,gender);
     }
@@ -83,6 +87,9 @@ public class LoginPreference {
     }
     public static String getUserSignature(){
         return getString(USER_SIGNATURE);
+    }
+    public static String getBirthday(){
+        return getString(BIRTHDAY);
     }
     public static String getGender(){
         return getString(GENDER);

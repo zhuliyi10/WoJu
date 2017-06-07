@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -27,9 +28,14 @@ import com.zhuliyi.woju.data.preference.LoginPreference;
 import com.zhuliyi.woju.utils.IntentUtil;
 import com.zhuliyi.woju.utils.ToastUtil;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * 账号信息activity
@@ -49,8 +55,13 @@ public class AccountActivity extends SwipeBackActivity {
     TextView textNick;
     @BindView(R.id.text_signature)
     TextView textSignature;
+    @BindView(R.id.text_gender)
+    TextView textGender;
+    @BindView(R.id.text_birthday)
+    TextView textBirthday;
     private Uri mCropImageUri;
     private String[] selectArr = new String[]{"拍照", "相册"};
+    private String[] genderArr = new String[]{"男", "女"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +75,13 @@ public class AccountActivity extends SwipeBackActivity {
     private void initView() {
         String iconUrl = LoginPreference.getIconUrl();
         if (!iconUrl.isEmpty()) {
-            Glide.with(context).load(iconUrl).into(imageHead);
+            Glide.with(context).load(iconUrl).placeholder(R.drawable.default_head).bitmapTransform(new CropCircleTransformation(context)).into(imageHead);
         }
         setWoxinNoView();
         setNickView();
-        setUserSignature();
+        setUserSignatureView();
+        setGenderView();
+        setBirthdayView();
     }
 
     private void setWoxinNoView() {
@@ -90,13 +103,29 @@ public class AccountActivity extends SwipeBackActivity {
             textNick.setText(nickName);
         }
     }
-    private void setUserSignature() {
+
+    private void setUserSignatureView() {
         String userSignature = LoginPreference.getUserSignature();
         if (!userSignature.isEmpty()) {
             textSignature.setText(userSignature);
         }
     }
-    @OnClick({R.id.ll_head, R.id.ll_woxin_no, R.id.ll_nick,R.id.ll_signature})
+
+    private void setGenderView() {
+        String gender = LoginPreference.getGender();
+        if (!gender.isEmpty()) {
+            textGender.setText(gender);
+        }
+    }
+
+    private void setBirthdayView() {
+        String birthday = LoginPreference.getBirthday();
+        if (!birthday.isEmpty()) {
+            textBirthday.setText(birthday);
+        }
+    }
+
+    @OnClick({R.id.ll_head, R.id.ll_woxin_no, R.id.ll_nick, R.id.ll_signature, R.id.ll_gender, R.id.ll_birthday,R.id.ll_qr_code})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_head:
@@ -135,13 +164,58 @@ public class AccountActivity extends SwipeBackActivity {
                 }).show();
                 break;
             case R.id.ll_signature:
-                new MaterialDialog.Builder(context).title("设置个性签名").inputRange(1,30).input("", LoginPreference.getUserSignature(), false, new MaterialDialog.InputCallback() {
+                new MaterialDialog.Builder(context).title("设置个性签名").inputRange(1, 30).input("", LoginPreference.getUserSignature(), false, new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
                         LoginPreference.saveUserSignature(input.toString());
-                        setUserSignature();
+                        setUserSignatureView();
                     }
                 }).show();
+                break;
+            case R.id.ll_gender:
+                String gender = LoginPreference.getGender();
+                int pos = 0;
+                if (!gender.isEmpty()) {
+                    if (gender.equals("女")) {
+                        pos = 1;
+                    }
+                }
+                new MaterialDialog.Builder(context).title("设置性别").items(genderArr).itemsCallbackSingleChoice(pos, new MaterialDialog.ListCallbackSingleChoice() {
+                    @Override
+                    public boolean onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
+                        LoginPreference.saveGender(text.toString());
+                        setGenderView();
+                        return false;
+                    }
+                }).positiveText("确定").show();
+                break;
+            case R.id.ll_birthday:
+                String birthday=LoginPreference.getBirthday();
+                final int year,mon,day;
+                Calendar selectedDate = Calendar.getInstance();
+                if(!birthday.isEmpty()){
+                    String[] ymd=birthday.split("-");
+                    year= Integer.parseInt(ymd[0]);
+                    mon=Integer.parseInt(ymd[1]);
+                    day=Integer.parseInt(ymd[2]);
+                    selectedDate.set(year,mon-1,day);
+                }
+
+                Calendar startDate = Calendar.getInstance();
+                startDate.set(1990, 0, 1);
+                Calendar endDate = Calendar.getInstance();
+                TimePickerView pvTime = new TimePickerView.Builder(context, new TimePickerView.OnTimeSelectListener() {
+                    @Override
+                    public void onTimeSelect(Date date, View v) {
+                        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+                        LoginPreference.saveBirthday(format.format(date));
+                        setBirthdayView();
+                    }
+                }).setType(new boolean[]{true, true, true, false, false, false}).setDate(selectedDate).setRangDate(startDate, endDate).build();
+                pvTime.show();
+                break;
+            case R.id.ll_qr_code:
+                startActivity(new Intent(context,QRCodeDetailActivity.class));
                 break;
         }
     }
