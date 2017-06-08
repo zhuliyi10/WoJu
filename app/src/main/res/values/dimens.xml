@@ -3,6 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="context_menu_item">64dp</dimen>
     <dimen name="divider">1dp</dimen>//分隔线的宽度
     <dimen name="button_corner">4dp</dimen>//按键的圆角半径
 

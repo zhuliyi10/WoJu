@@ -1,11 +1,11 @@
 package com.zhuliyi.woju.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
+import com.yalantis.contextmenu.lib.MenuObject;
+import com.yalantis.contextmenu.lib.MenuParams;
+import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
 import com.zhuliyi.woju.R;
 import com.zhuliyi.woju.base.BaseActivity;
 import com.zhuliyi.woju.common.CommonOnPageChangeListener;
@@ -24,11 +28,12 @@ import com.zhuliyi.woju.ui.fragment.NewsFragment;
 import com.zhuliyi.woju.utils.ActivityManagerUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity{
     public static final String TAG=MainActivity.class.getSimpleName();
     @BindView(R.id.viewPager)
     ViewPager viewPager;
@@ -36,7 +41,7 @@ public class MainActivity extends BaseActivity {
     private ImageView[] ivn_tab, iva_tab;
     private TextView[] tv_tab;
 
-
+    ContextMenuDialogFragment menuDialogFragment;
     private Long firstTime = 0L;
     private ArrayList<Fragment> fragmentList;//fragment列表
     private FragmentPagerAdapter pagerAdapter;
@@ -54,7 +59,6 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
         initView();
         setListener();
-        Log.d(MainActivity.class.getSimpleName(), "MainActivity ");
     }
 
     private void initView() {
@@ -93,6 +97,21 @@ public class MainActivity extends BaseActivity {
 
     private void initToolbar(){
         setToolbarVisible(true);
+
+        MenuParams menuParams = new MenuParams();
+        menuParams.setActionBarSize((int) getResources().getDimension(R.dimen.context_menu_item));
+        menuParams.setMenuObjects(getMenuObjects());
+        menuParams.setClosableOutside(true);
+        // set other settings to meet your needs
+        menuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams);
+        menuDialogFragment.setItemClickListener(new OnMenuItemClickListener() {
+            @Override
+            public void onMenuItemClick(View clickedView, int position) {
+                if(position==2) {
+                    startActivity(new Intent(context, ScanActivity.class));
+                }
+            }
+        });
         toolbar.inflateMenu(R.menu.main_menu);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -101,6 +120,7 @@ public class MainActivity extends BaseActivity {
                     case R.id.contact:
                         break;
                     case R.id.plus:
+                        menuDialogFragment.show(getSupportFragmentManager(), "ContextMenuDialogFragment");
                         break;
                 }
                 return true;
@@ -112,6 +132,26 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+    }
+    private List<MenuObject> getMenuObjects(){
+        MenuObject grounp = new MenuObject("发起群聊");
+        grounp.setResource(R.drawable.menu_group_chat);
+
+        MenuObject frind = new MenuObject("添加朋友");
+        frind.setResource(R.drawable.menu_add_friend);
+
+        MenuObject scan = new MenuObject("扫一扫");
+        scan.setResource(R.drawable.menu_scan);
+
+        MenuObject collectAndPay = new MenuObject("收付款");
+        collectAndPay.setResource(R.drawable.menu_collect_and_pay);
+
+        List<MenuObject> menuObjects = new ArrayList<>();
+        menuObjects.add(grounp);
+        menuObjects.add(frind);
+        menuObjects.add(scan);
+        menuObjects.add(collectAndPay);
+        return menuObjects;
     }
     private void setListener(){
         viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
@@ -179,6 +219,8 @@ public class MainActivity extends BaseActivity {
             setPagerPos(Integer.valueOf(v.getTag().toString()));
         }
     };
+
+
     private class MyOnPageChangeListener extends CommonOnPageChangeListener {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
