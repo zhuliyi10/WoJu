@@ -145,3 +145,6 @@
 -dontwarn com.yalantis.ucrop**
 -keep class com.yalantis.ucrop** { *; }
 -keep interface com.yalantis.ucrop** { *; }
+
+#adapter
+-keep class com.chad.library.adapter.** {   *;}

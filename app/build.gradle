@@ -75,6 +75,8 @@ dependencies {
     //    compile 'com.makeramen:roundedimageview:2.3.0'
     //baseAdapter
     compile 'com.zhy:base-rvadapter:3.0.3'
+    //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.18'
     //解析json
     compile 'com.google.code.gson:gson:2.5'
     testCompile 'junit:junit:4.12'
