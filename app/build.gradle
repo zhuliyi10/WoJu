@@ -6,7 +6,7 @@ android {
         woxin {
             keyAlias 'leory'
             keyPassword 'woxin20170101'
-            storeFile file('D:/commonData/GitHutProject/WoJu/app/woxin.jks')
+            storeFile file('D:/zhuliyi/github/WoJu/app/woxin.jks')
             storePassword 'woxin20170101'
         }
     }
@@ -31,6 +31,10 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.woxin
+        }
+        beta {
+            applicationIdSuffix '.beta'
             signingConfig signingConfigs.woxin
         }
         debug {
@@ -95,4 +99,9 @@ dependencies {
 
     //ContextMenu https://github.com/Yalantis/Context-Menu.Android
     compile 'com.yalantis:contextmenu:1.0.7'
+
+    ////内存泄漏的检测
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    betaCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
 }

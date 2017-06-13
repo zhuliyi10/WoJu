@@ -81,6 +81,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @Override
     protected void onDestroy() {
         super.onDestroy();
+//        App.getRefWatcher().watch(this);
         ActivityManagerUtils.getInstance().removeActivity(this);
         if (unbinder != null) {
             unbinder.unbind();
@@ -99,6 +100,20 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected void removeStatus() {
         StatusBarCompat.setFullScreen(this);
     }
+
+    protected void showContent(){
+        statusLayoutManager.showContent();
+    }
+    protected void showProgress(){
+        statusLayoutManager.showLoading();
+    }
+    protected void showEmpty(){
+        statusLayoutManager.showEmptyData();
+    }
+    protected void showError(){
+        statusLayoutManager.showError();
+    }
+
     /**
      * 是否设置全屏,设置全屏时windowSoftInputMode = "adjustResize"无效
      * @param isFull

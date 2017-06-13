@@ -86,7 +86,10 @@ public class RootFrameLayout extends FrameLayout {
         layoutSparseArray.put(id, resView);
         addView(resView);
     }
-
+    public void addLayoutResId(Context context, View layoutView, int id) {
+        layoutSparseArray.put(id, layoutView);
+        addView(layoutView);
+    }
     public void addViewStub(ViewStub viewStub, int id) {
         switch (id) {
             case LAYOUT_NETWORK_ERROR_ID:
@@ -200,6 +203,9 @@ public class RootFrameLayout extends FrameLayout {
         return isShow;
     }
 
+    public View getLayoutResView(int id){
+        return layoutSparseArray.get(id);
+    }
     public void setOnShowHideListener(OnShowHideListener onShowHideListener) {
         mOnShowHideListener = onShowHideListener;
     }

@@ -65,3 +65,7 @@
 1、添加下拉显示各个选项和二维码扫描
 2、添加热修复框架
 3、添加BaseRecyclerViewAdapterHelper库
+
+2017-6-13修改更新内容
+1、更换adapter
+2、添加leakcanary库

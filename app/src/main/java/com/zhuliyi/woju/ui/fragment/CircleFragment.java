@@ -49,7 +49,7 @@ public class CircleFragment extends BaseFragment {
         DividerItemDecoration itemDecoration = new DividerItemDecoration(context);
 //        itemDecoration.setmDivider(context.getResources().getDrawable(R.drawable.divider_grey_line));
         rcv.addItemDecoration(itemDecoration);
-        adapter = new CircleImageAdapter(context, getDataList());
+        adapter = new CircleImageAdapter(getDataList());
         rcv.setAdapter(adapter);
 
         StoreHouseHeader header = new StoreHouseHeader(getContext());

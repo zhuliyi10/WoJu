@@ -1,5 +1,6 @@
 package com.zhuliyi.woju.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,10 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zhuliyi.woju.R;
 import com.zhuliyi.woju.app.Constants;
 import com.zhuliyi.woju.base.BaseFragment;
+import com.zhuliyi.woju.leak.SingleInstanceActivity;
 import com.zhuliyi.woju.parser.NewsParser;
+import com.zhuliyi.woju.ui.activity.ChatActivity;
 import com.zhuliyi.woju.ui.adapter.NewsAdapter;
 import com.zhuliyi.woju.utils.GsonUtil;
 import com.zhuliyi.woju.widget.decoration.DividerItemDecoration;
@@ -48,7 +52,25 @@ public class NewsFragment extends BaseFragment {
         DividerItemDecoration itemDecoration=new DividerItemDecoration(context);
         itemDecoration.setmDivider(context.getResources().getDrawable(R.drawable.divider_grey_line));
         rcv.addItemDecoration(itemDecoration);
-        rcv.setAdapter(new NewsAdapter(context,getDataList()));
+        NewsAdapter adapter=new NewsAdapter(getDataList());
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+                NewsParser parser= (NewsParser) adapter.getData().get(position);
+                int type=parser.type;
+                if(type==1){
+                    if(parser.subType==1){
+                        getContext().startActivity(new Intent(getContext(), ChatActivity.class));
+                    }
+                }else if(type==2){
+                    getContext().startActivity(new Intent(getContext(), SingleInstanceActivity.class));
+                }else if(type==3){
+
+                }
+            }
+        });
+        rcv.setAdapter(adapter);
     }
 
     @Override

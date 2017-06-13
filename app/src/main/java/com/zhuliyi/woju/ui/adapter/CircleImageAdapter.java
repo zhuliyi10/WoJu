@@ -1,15 +1,14 @@
 package com.zhuliyi.woju.ui.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.zhuliyi.woju.R;
-import com.zhuliyi.woju.base.BaseAdapter;
+import com.zhuliyi.woju.base.QuickAdapter;
 import com.zhuliyi.woju.parser.CircleParser;
 import com.zhuliyi.woju.widget.decoration.DividerGridItemDecoration;
-import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
 
@@ -18,25 +17,9 @@ import java.util.List;
  * Created by zhuliyi on 2017/4/18.
  */
 
-public class CircleImageAdapter extends BaseAdapter<CircleParser.CircleListParser> {
-    private Context context;
-    public CircleImageAdapter(Context context, List<CircleParser.CircleListParser> datas) {
-        super(context, R.layout.item_circle_image, datas);
-        this.context=context;
-    }
-
-    @Override
-    protected void convert(ViewHolder holder, CircleParser.CircleListParser parser, int position){
-        holder.setText(R.id.text_title,parser.title);
-        holder.setText(R.id.text_time,parser.time);
-        holder.setText(R.id.text_content,parser.content);
-        RecyclerView rcvImage=holder.getView(R.id.rcv_image);
-        if(parser.imgList!=null&&parser.imgList.size()>0){
-            rcvImage.setVisibility(View.VISIBLE);
-            setImageGrid(rcvImage,parser.imgList);
-        }else {
-            rcvImage.setVisibility(View.GONE);
-        }
+public class CircleImageAdapter extends QuickAdapter<CircleParser.CircleListParser> {
+    public CircleImageAdapter(List<CircleParser.CircleListParser> datas) {
+        super(R.layout.item_circle_image, datas);
     }
 
     private void setImageGrid(RecyclerView rcv,List<CircleParser.CirclePicParser> datas){
@@ -54,11 +37,25 @@ public class CircleImageAdapter extends BaseAdapter<CircleParser.CircleListParse
                 break;
 
         }
-        GridLayoutManager gl=new GridLayoutManager(context,colNum);
+        GridLayoutManager gl=new GridLayoutManager(mContext,colNum);
         gl.setOrientation(GridLayoutManager.VERTICAL);
         rcv.setLayoutManager(gl);
         rcv.setHasFixedSize(true);
-        rcv.addItemDecoration(new DividerGridItemDecoration(context));
-        rcv.setAdapter(new CircleImageGridAdapter(context,datas));
+        rcv.addItemDecoration(new DividerGridItemDecoration(mContext));
+        rcv.setAdapter(new CircleImageGridAdapter(datas));
+    }
+
+    @Override
+    protected void convert(BaseViewHolder holder, CircleParser.CircleListParser item) {
+        holder.setText(R.id.text_title,item.title);
+        holder.setText(R.id.text_time,item.time);
+        holder.setText(R.id.text_content,item.content);
+        RecyclerView rcvImage=holder.getView(R.id.rcv_image);
+        if(item.imgList!=null&&item.imgList.size()>0){
+            rcvImage.setVisibility(View.VISIBLE);
+            setImageGrid(rcvImage,item.imgList);
+        }else {
+            rcvImage.setVisibility(View.GONE);
+        }
     }
 }

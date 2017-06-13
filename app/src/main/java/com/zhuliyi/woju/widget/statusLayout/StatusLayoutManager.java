@@ -17,6 +17,7 @@ public class StatusLayoutManager {
     private final ViewStub errorVs;
     private final int loadingLayoutResId;
     private final int contentLayoutResId;
+    private final View contentView;
 
     private final RootFrameLayout rootFrameLayout;
     private final OnShowHideViewListener onShowHideViewListener;
@@ -28,6 +29,7 @@ public class StatusLayoutManager {
         this.emptyDataVs = builder.emptyDataVs;
         this.errorVs = builder.errorVs;
         this.contentLayoutResId = builder.contentLayoutResId;
+        this.contentView=builder.contentView;
         this.onShowHideViewListener = builder.onShowHideViewListener;
 
         rootFrameLayout = new RootFrameLayout(this.context);
@@ -41,9 +43,14 @@ public class StatusLayoutManager {
      *  所有局部view添加到根布局
      */
     private void addAllLayoutToRootLayout() {
-        if(this.contentLayoutResId != 0) rootFrameLayout.addLayoutResId(context, contentLayoutResId, RootFrameLayout.LAYOUT_CONTENT_ID);
-        if(this.loadingLayoutResId != 0) rootFrameLayout.addLayoutResId(context, loadingLayoutResId, RootFrameLayout.LAYOUT_LOADING_ID);
-
+        if(this.contentLayoutResId != 0) {
+            rootFrameLayout.addLayoutResId(context, contentLayoutResId, RootFrameLayout.LAYOUT_CONTENT_ID);
+        }else if(contentView!=null){
+            rootFrameLayout.addLayoutResId(context,contentView,RootFrameLayout.LAYOUT_CONTENT_ID);
+        }
+        if(this.loadingLayoutResId != 0) {
+            rootFrameLayout.addLayoutResId(context, loadingLayoutResId, RootFrameLayout.LAYOUT_LOADING_ID);
+        }
         if(this.emptyDataVs != null) rootFrameLayout.addViewStub(emptyDataVs, RootFrameLayout.LAYOUT_EMPTYDATA_ID);
         if(this.errorVs != null) rootFrameLayout.addViewStub(errorVs, RootFrameLayout.LAYOUT_ERROR_ID);
         if(this.netWorkErrorVs != null) rootFrameLayout.addViewStub(netWorkErrorVs, RootFrameLayout.LAYOUT_NETWORK_ERROR_ID);
@@ -101,7 +108,7 @@ public class StatusLayoutManager {
     /**
      *  得到root 布局
      */
-    public View getRootLayout() {
+    public RootFrameLayout getRootLayout() {
         return rootFrameLayout;
     }
 
@@ -111,6 +118,7 @@ public class StatusLayoutManager {
         private Context context;
         private int loadingLayoutResId;
         private int contentLayoutResId;
+        private View contentView;
         private ViewStub netWorkErrorVs;
         private ViewStub emptyDataVs;
         private ViewStub errorVs;
@@ -145,6 +153,10 @@ public class StatusLayoutManager {
 
         public Builder contentView(@LayoutRes int contentLayoutResId) {
             this.contentLayoutResId = contentLayoutResId;
+            return this;
+        }
+        public Builder contentView(View contentView) {
+            this.contentView = contentView;
             return this;
         }
 

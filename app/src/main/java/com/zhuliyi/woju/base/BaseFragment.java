@@ -24,8 +24,6 @@ import butterknife.Unbinder;
  */
 
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
-    private final String TAG = getClass().getSimpleName();
-
     protected StatusLayoutManager statusLayoutManager;//状态布局,位于标题之下
     protected T basePresenter;
     protected Unbinder unbinder;
@@ -37,6 +35,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     protected TextView textTitle;
     private boolean isViewPrepared; // 标识fragment视图已经初始化完毕
     private boolean hasFetchData; // 标识已经触发过懒加载数据
+    protected static final String TAG = "BaseFragment";
     protected abstract int getLayoutId();
     protected void initView(){
 
@@ -84,7 +83,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
             flContent.addView(statusLayoutManager.getRootLayout());
             unbinder= ButterKnife.bind(this,rootView);
             statusLayoutManager.showContent();
-
             initView();
         }
 
@@ -135,6 +133,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+//        App.getRefWatcher().watch(this);
         if(unbinder!=null){
             unbinder.unbind();
         }

@@ -1,11 +1,9 @@
 package com.zhuliyi.woju.ui.adapter;
 
-import android.content.Context;
-
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.zhuliyi.woju.R;
-import com.zhuliyi.woju.base.BaseAdapter;
+import com.zhuliyi.woju.base.QuickAdapter;
 import com.zhuliyi.woju.parser.BillParser;
-import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
 
@@ -14,17 +12,16 @@ import java.util.List;
  * Created by zhuliyi on 2017/5/18.
  */
 
-public class BillAdapter extends BaseAdapter<BillParser>{
-    public BillAdapter(Context context,  List<BillParser> datas) {
-        super(context, R.layout.item_bill, datas);
+public class BillAdapter extends QuickAdapter<BillParser> {
+    public BillAdapter(List<BillParser> datas) {
+        super(R.layout.item_bill, datas);
     }
-
     @Override
-    protected void convert(ViewHolder holder, BillParser billParser, int position) {
-        holder.setText(R.id.text_date,billParser.date);
-        holder.setText(R.id.text_time,billParser.time);
+    protected void convert(BaseViewHolder holder, BillParser item) {
+        holder.setText(R.id.text_date,item.date);
+        holder.setText(R.id.text_time,item.time);
         holder.setImageResource(R.id.image_head,R.drawable.mine_head);
-        holder.setText(R.id.text_money,billParser.billMoney);
-        holder.setText(R.id.text_name,billParser.billName);
+        holder.setText(R.id.text_money,item.billMoney);
+        holder.setText(R.id.text_name,item.billName);
     }
 }
