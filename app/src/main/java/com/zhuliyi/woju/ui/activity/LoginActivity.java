@@ -163,7 +163,9 @@ public class LoginActivity extends SwipeBackActivity {
                 }
                 break;
             case R.id.text_forget:
-                startActivity(new Intent(context,PwdForgetActivity.class));
+                Intent intent=new Intent(context,PwdForgetActivity.class);
+                intent.putExtra("type",PwdForgetActivity.TYPE_FORGET);
+                startActivity(intent);
                 break;
             case R.id.login_whchat:
                 authLogin(SHARE_MEDIA.WEIXIN);

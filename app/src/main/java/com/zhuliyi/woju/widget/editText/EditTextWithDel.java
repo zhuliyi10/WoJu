@@ -21,7 +21,7 @@ public class EditTextWithDel extends android.support.v7.widget.AppCompatEditText
 	private Drawable imgInable;
 	private Drawable imgAble;
 	private Context mContext;
-
+	private boolean visible=true;
 	public EditTextWithDel(Context context) {
 		super(context);
 		mContext = context;
@@ -57,7 +57,7 @@ public class EditTextWithDel extends android.support.v7.widget.AppCompatEditText
 	}
 
 	private void setDrawable() {
-		if(length() < 1)
+		if(length() < 1||!visible)
 			setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
 		else
 			setCompoundDrawablesWithIntrinsicBounds(null, null, imgAble, null);
@@ -65,7 +65,7 @@ public class EditTextWithDel extends android.support.v7.widget.AppCompatEditText
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (imgAble != null && event.getAction() == MotionEvent.ACTION_UP) {
+        if (visible&&imgAble != null && event.getAction() == MotionEvent.ACTION_UP) {
             int eventX = (int) event.getX();
             int eventY = (int) event.getY();
             Log.e(TAG, "eventX = " + eventX + "; eventY = " + eventY);
@@ -83,5 +83,9 @@ public class EditTextWithDel extends android.support.v7.widget.AppCompatEditText
     protected void finalize() throws Throwable {
         super.finalize();
     }
+
+    public void setDelVisible(boolean visible){
+		this.visible=visible;
+	}
 
 }

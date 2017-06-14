@@ -2,7 +2,9 @@ package com.zhuliyi.woju.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
@@ -25,6 +27,8 @@ import butterknife.OnClick;
 public class SettingActivity extends SwipeBackActivity {
     @BindView(R.id.btn_logout)
     Button btnLogout;
+    @BindView(R.id.text_pwd_tip)
+    TextView textPwdTip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,26 +36,41 @@ public class SettingActivity extends SwipeBackActivity {
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
         textTitle.setText("设置");
+        initView();
     }
 
-    @OnClick(R.id.btn_logout)
-    public void onViewClicked() {
-        int loginType = LoginPreference.getLoginType();
-        SHARE_MEDIA platform = null;
-        if (loginType == LoginPreference.LOGIN_TYPE_WECHAT) {
-            platform = SHARE_MEDIA.WEIXIN;
-        } else if (loginType == LoginPreference.LOGIN_TYPE_QQ) {
-            platform = SHARE_MEDIA.QQ;
-        } else if (loginType == LoginPreference.LOGIN_TYPE_SINA) {
-            platform = SHARE_MEDIA.SINA;
+    private void initView() {
+        if(!LoginPreference.getPwd().isEmpty()){
+            textPwdTip.setVisibility(View.GONE);
         }
-        LoginPreference.saveLoginState(false);
-        if (platform != null) {
-            UMShareAPI.get(context).deleteOauth(activity, platform, authListener);
-        }else {
-            finish();
-        }
+    }
 
+    @OnClick({R.id.btn_logout,R.id.ll_pwd})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_pwd:
+                Intent intent=new Intent(context,PwdForgetActivity.class);
+                intent.putExtra("type",PwdForgetActivity.TYPE_MOD);
+                startActivity(intent);
+                break;
+            case R.id.btn_logout:
+                int loginType = LoginPreference.getLoginType();
+                SHARE_MEDIA platform = null;
+                if (loginType == LoginPreference.LOGIN_TYPE_WECHAT) {
+                    platform = SHARE_MEDIA.WEIXIN;
+                } else if (loginType == LoginPreference.LOGIN_TYPE_QQ) {
+                    platform = SHARE_MEDIA.QQ;
+                } else if (loginType == LoginPreference.LOGIN_TYPE_SINA) {
+                    platform = SHARE_MEDIA.SINA;
+                }
+                LoginPreference.saveLoginState(false);
+                if (platform != null) {
+                    UMShareAPI.get(context).deleteOauth(activity, platform, authListener);
+                } else {
+                    finish();
+                }
+                break;
+        }
     }
 
     UMAuthListener authListener = new UMAuthListener() {

@@ -6,10 +6,12 @@ import android.os.CountDownTimer;
 import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.zhuliyi.woju.R;
 import com.zhuliyi.woju.base.SwipeBackActivity;
 import com.zhuliyi.woju.callback.TextWatcherListener;
+import com.zhuliyi.woju.data.preference.LoginPreference;
 import com.zhuliyi.woju.utils.ToastUtil;
 import com.zhuliyi.woju.utils.VerificationUtils;
 import com.zhuliyi.woju.widget.editText.EditTextWithDel;
@@ -24,15 +26,19 @@ import butterknife.OnClick;
  */
 
 public class PwdForgetActivity extends SwipeBackActivity {
+    public static final int TYPE_FORGET = 1;//忘记
+    public static final int TYPE_MOD = 2;//修改
     @BindView(R.id.et_phone)
     EditTextWithDel etPhone;
     @BindView(R.id.btn_code)
     Button btnCode;
     @BindView(R.id.et_code)
     EditTextWithDel etCode;
+    @BindView(R.id.text_tip)
+    TextView textTip;
 
-    private boolean canGetCode=true;
-
+    private boolean canGetCode = true;
+    private int type;
     private static final int TOTAL_TIME = 90000;//单位ms
     private static final int ONECE_TIME = 1000;//单位ms
     private CountDownTimer countDownTimer = new CountDownTimer(TOTAL_TIME, ONECE_TIME) {
@@ -44,18 +50,35 @@ public class PwdForgetActivity extends SwipeBackActivity {
         @Override
         public void onFinish() {
             btnCode.setText("重新获取验证码");
-            canGetCode=true;
+            canGetCode = true;
             setBtnCode();
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pwd_forget);
         ButterKnife.bind(this);
-        textTitle.setText("找回登陆密码");
-        btnCode.setClickable(false);
-        etPhone.addTextChangedListener(new TextWatcherListener(){
+        type= getIntent().getIntExtra("type", -1);
+        if (type == -1) {
+            finish();
+        }
+        if (type == 1) {
+            textTitle.setText("找回登陆密码");
+        }
+        if (type == 2) {
+            textTitle.setText("修改登陆密码");
+            if (LoginPreference.getPhone().isEmpty()) {
+                textTip.setText("手机号码未设置，验证成功后自动绑定手机号");
+            }else {
+                etPhone.setDelVisible(false);
+                etPhone.setText(LoginPreference.getPhone());
+                etPhone.setEnabled(false);
+                setBtnCodeEnable();
+            }
+        }
+        etPhone.addTextChangedListener(new TextWatcherListener() {
             @Override
             public void afterTextChanged(Editable s) {
                 setBtnCode();
@@ -69,44 +92,51 @@ public class PwdForgetActivity extends SwipeBackActivity {
         countDownTimer.cancel();
     }
 
-    private void setBtnCode(){
-        if(canGetCode){
-            if(isPhoneNumber()){
+    private void setBtnCode() {
+        if (canGetCode) {
+            if (isPhoneNumber()) {
                 setBtnCodeEnable();
-            }else {
+            } else {
                 setBtnCodeUnable();
             }
         }
     }
-    private void setBtnCodeEnable(){
+
+    private void setBtnCodeEnable() {
         btnCode.setClickable(true);
         btnCode.setBackgroundResource(R.drawable.selector_color_circle);
     }
-    private void setBtnCodeUnable(){
+
+    private void setBtnCodeUnable() {
         btnCode.setClickable(false);
         btnCode.setBackgroundResource(R.drawable.shape_gray_circle);
     }
-    private boolean isPhoneNumber(){
+
+    private boolean isPhoneNumber() {
         return VerificationUtils.matcherPhoneNum(etPhone.getText().toString());
     }
+
     @OnClick({R.id.btn_code, R.id.btn_next})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_code:
                 //发送短信验证码
-                canGetCode=false;
+                canGetCode = false;
                 setBtnCodeUnable();
                 countDownTimer.start();
                 break;
             case R.id.btn_next:
-                if(!isPhoneNumber()){
-                    ToastUtil.showShort(context,"请输入正确的手机号码");
-                }else if(etCode.getText().toString().equals("")){
-                    ToastUtil.showShort(context,"验证码不能为空");
-                }else if(etPhone.getText().toString().equals("13250751496")&&etCode.getText().toString().equals("1111")){
-                    startActivity(new Intent(context,PwdSetActivity.class));
-                }else {
-                    ToastUtil.showShort(context,"手机号：13250751496\n验证码：1111");
+                if (!isPhoneNumber()) {
+                    ToastUtil.showShort(context, "请输入正确的手机号码");
+                } else if (etCode.getText().toString().equals("")) {
+                    ToastUtil.showShort(context, "验证码不能为空");
+                } else if (etPhone.getText().toString().equals("13250751496") && etCode.getText().toString().equals("1111")) {
+                    if(type==2){
+                        LoginPreference.savePhone(etPhone.getText().toString());
+                    }
+                    startActivity(new Intent(context, PwdSetActivity.class));
+                } else {
+                    ToastUtil.showShort(context, "手机号：13250751496\n验证码：1111");
                 }
                 break;
         }

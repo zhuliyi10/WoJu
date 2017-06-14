@@ -1,7 +1,6 @@
 package com.zhuliyi.woju.ui.activity;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -25,7 +24,6 @@ import butterknife.ButterKnife;
 public class BillActivity extends SwipeBackActivity {
     @BindView(R.id.rcv)
     RecyclerView rcv;
-    private Handler handler=new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +32,7 @@ public class BillActivity extends SwipeBackActivity {
         textTitle.setText("账单");
         rcv.setLayoutManager(new LinearLayoutManager(context));
         showProgress();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                initData();
-            }
-        },3000);
+        initData();
     }
     private void initData(){
         List<BillParser>bills=new ArrayList<>();
@@ -65,9 +58,6 @@ public class BillActivity extends SwipeBackActivity {
 
     @Override
     protected void onDestroy() {
-        if(handler!=null){
-            handler.removeCallbacksAndMessages(null);
-        }
         super.onDestroy();
     }
 }

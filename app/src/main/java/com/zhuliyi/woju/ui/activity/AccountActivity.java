@@ -59,6 +59,14 @@ public class AccountActivity extends SwipeBackActivity {
     TextView textGender;
     @BindView(R.id.text_birthday)
     TextView textBirthday;
+    @BindView(R.id.text_name)
+    TextView textName;
+    @BindView(R.id.text_auth)
+    TextView textAuth;
+
+
+
+    public static final int REQUEST_ID_AUTH=1;
     private Uri mCropImageUri;
     private String[] selectArr = new String[]{"拍照", "相册"};
     private String[] genderArr = new String[]{"男", "女"};
@@ -82,6 +90,7 @@ public class AccountActivity extends SwipeBackActivity {
         setUserSignatureView();
         setGenderView();
         setBirthdayView();
+        setIDAuthView();
     }
 
     private void setWoxinNoView() {
@@ -125,7 +134,17 @@ public class AccountActivity extends SwipeBackActivity {
         }
     }
 
-    @OnClick({R.id.ll_head, R.id.ll_woxin_no, R.id.ll_nick, R.id.ll_signature, R.id.ll_gender, R.id.ll_birthday,R.id.ll_qr_code})
+    private void setIDAuthView() {
+        String trueName = LoginPreference.getTrueName();
+        if (trueName.isEmpty()) {
+            textAuth.setText("未认证");
+        }else {
+            textAuth.setText("已认证");
+            textName.setText(trueName);
+        }
+    }
+
+    @OnClick({R.id.ll_head, R.id.ll_woxin_no, R.id.ll_nick, R.id.ll_signature, R.id.ll_gender, R.id.ll_birthday, R.id.ll_qr_code, R.id.ll_id_auth,R.id.ll_contract})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_head:
@@ -190,15 +209,15 @@ public class AccountActivity extends SwipeBackActivity {
                 }).positiveText("确定").show();
                 break;
             case R.id.ll_birthday:
-                String birthday=LoginPreference.getBirthday();
-                final int year,mon,day;
+                String birthday = LoginPreference.getBirthday();
+                final int year, mon, day;
                 Calendar selectedDate = Calendar.getInstance();
-                if(!birthday.isEmpty()){
-                    String[] ymd=birthday.split("-");
-                    year= Integer.parseInt(ymd[0]);
-                    mon=Integer.parseInt(ymd[1]);
-                    day=Integer.parseInt(ymd[2]);
-                    selectedDate.set(year,mon-1,day);
+                if (!birthday.isEmpty()) {
+                    String[] ymd = birthday.split("-");
+                    year = Integer.parseInt(ymd[0]);
+                    mon = Integer.parseInt(ymd[1]);
+                    day = Integer.parseInt(ymd[2]);
+                    selectedDate.set(year, mon - 1, day);
                 }
 
                 Calendar startDate = Calendar.getInstance();
@@ -207,7 +226,7 @@ public class AccountActivity extends SwipeBackActivity {
                 TimePickerView pvTime = new TimePickerView.Builder(context, new TimePickerView.OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View v) {
-                        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                         LoginPreference.saveBirthday(format.format(date));
                         setBirthdayView();
                     }
@@ -215,7 +234,17 @@ public class AccountActivity extends SwipeBackActivity {
                 pvTime.show();
                 break;
             case R.id.ll_qr_code:
-                startActivity(new Intent(context,QRCodeDetailActivity.class));
+                startActivity(new Intent(context, QRCodeDetailActivity.class));
+                break;
+            case R.id.ll_id_auth:
+                if(LoginPreference.getTrueName().isEmpty()){
+                    startActivityForResult(new Intent(context,IDAuthActivity.class),REQUEST_ID_AUTH);
+                }else {
+                    startActivity(new Intent(context,IDInfoActivity.class));
+                }
+                break;
+            case R.id.ll_contract:
+                startActivity(new Intent(context,ContractActivity.class));
                 break;
         }
     }
@@ -252,6 +281,11 @@ public class AccountActivity extends SwipeBackActivity {
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Toast.makeText(this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
             }
+        }
+
+
+        if(requestCode==REQUEST_ID_AUTH&&resultCode==RESULT_OK){
+            setIDAuthView();
         }
     }
 

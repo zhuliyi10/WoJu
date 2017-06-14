@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.zhuliyi.woju.R;
 import com.zhuliyi.woju.base.SwipeBackActivity;
+import com.zhuliyi.woju.data.preference.LoginPreference;
 import com.zhuliyi.woju.utils.ActivityManagerUtils;
 import com.zhuliyi.woju.utils.ToastUtil;
 import com.zhuliyi.woju.widget.editText.EditTextWithDel;
@@ -39,6 +40,7 @@ public class PwdSetActivity extends SwipeBackActivity {
             ToastUtil.showShort(context,"两次密码不一致");
         }else {
             ToastUtil.showShort(context,"密码设置成功");
+            LoginPreference.savePwd(pwd1);
             ActivityManagerUtils.getInstance().removeActivityExceptMain();
         }
     }

@@ -50,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/text_tip"
             android:text="修改密码之前要验证蜗居用户的手机号码"
             android:textColor="@color/text_low"
             android:layout_width="wrap_content"

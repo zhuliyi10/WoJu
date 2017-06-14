@@ -20,6 +20,8 @@
             android:textSize="12sp"/>
 
         <LinearLayout
+            android:id="@+id/ll_pwd"
+            android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
@@ -34,7 +36,12 @@
                 android:text="修改登陆密码"
                 android:textColor="@color/text"
                 android:textSize="16sp"/>
-
+            <TextView
+                android:id="@+id/text_pwd_tip"
+                android:text="未设置"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -48,6 +55,8 @@
             android:background="@color/divider"/>
 
         <LinearLayout
+            android:id="@+id/ll_phone"
+            android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
@@ -62,7 +71,12 @@
                 android:text="修改登陆手机"
                 android:textColor="@color/text"
                 android:textSize="16sp"/>
-
+            <TextView
+                android:id="@+id/text_phone_tip"
+                android:text="未设置"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -76,6 +90,8 @@
             android:background="@color/divider"/>
 
         <LinearLayout
+            android:id="@+id/wechat"
+            android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
@@ -90,7 +106,12 @@
                 android:text="绑定微信"
                 android:textColor="@color/text"
                 android:textSize="16sp"/>
-
+            <TextView
+                android:id="@+id/text_wechat_tip"
+                android:text="未绑定"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -104,6 +125,8 @@
             android:background="@color/divider"/>
 
         <LinearLayout
+            android:id="@+id/ll_qq"
+            android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
@@ -118,7 +141,12 @@
                 android:text="绑定QQ"
                 android:textColor="@color/text"
                 android:textSize="16sp"/>
-
+            <TextView
+                android:id="@+id/text_qq_tip"
+                android:text="未绑定"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -132,6 +160,8 @@
             android:background="@color/divider"/>
 
         <LinearLayout
+            android:id="@+id/sina"
+            android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
@@ -146,7 +176,12 @@
                 android:text="绑定微博"
                 android:textColor="@color/text"
                 android:textSize="16sp"/>
-
+            <TextView
+                android:id="@+id/text_sina_tip"
+                android:text="未绑定"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -164,6 +199,8 @@
             android:textSize="12sp"/>
 
         <LinearLayout
+            android:id="@+id/ll_privacy"
+            android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
@@ -192,6 +229,8 @@
             android:background="@color/divider"/>
 
         <LinearLayout
+            android:id="@+id/ll_notify"
+            android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
@@ -220,6 +259,8 @@
             android:background="@color/divider"/>
 
         <LinearLayout
+            android:id="@+id/ll_cache"
+            android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"

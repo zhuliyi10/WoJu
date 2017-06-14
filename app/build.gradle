@@ -6,7 +6,7 @@ android {
         woxin {
             keyAlias 'leory'
             keyPassword 'woxin20170101'
-            storeFile file('D:/zhuliyi/github/WoJu/app/woxin.jks')
+            storeFile file('D:/commonData/GitHutProject/WoJu/app/woxin.jks')
             storePassword 'woxin20170101'
         }
     }

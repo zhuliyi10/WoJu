@@ -21,6 +21,8 @@ public class LoginPreference {
     private static final String ICON_URL="icon_url";//用户头像
     private static final String USER_SIGNATURE="user_signature";//用户签名
     private static final String BIRTHDAY="birthday";//生日 1992-3-20
+    private static final String TRUE_NAME="true_name";//真实名字
+    private static final String ID_NO="id_no";//身份证号
     private static final String LOGIN_STATE="login_state";//登陆状态
     private static final String LOGIN_TYPE="login_type";//登陆类型
     public static final int LOGIN_TYPE_PHONE=1;//手机号
@@ -48,6 +50,9 @@ public class LoginPreference {
     public static void saveAccount(String account){
         saveString(ACCOUNT,account);
     }
+    public static void savePhone(String phone){
+        saveString(PHONE,phone);
+    }
     public static void saveName(String name){
         saveString(NAME,name);
     }
@@ -66,7 +71,12 @@ public class LoginPreference {
     public static void saveIconUrl(String iconUrl){
         saveString(ICON_URL,iconUrl);
     }
-
+    public static void saveTrueName(String trueName){
+        saveString(TRUE_NAME,trueName);
+    }
+    public static void saveIDNo(String IDNo){
+        saveString(ID_NO,IDNo);
+    }
     /**
      * @param pwd 加密后的密码
      */
@@ -78,6 +88,9 @@ public class LoginPreference {
     }
     public static String getAccount(){
         return getString(ACCOUNT);
+    }
+    public static String getPhone(){
+        return getString(PHONE);
     }
     public static String getName(){
         return getString(NAME);
@@ -96,6 +109,12 @@ public class LoginPreference {
     }
     public static String getIconUrl(){
         return getString(ICON_URL);
+    }
+    public static String getTrueName(){
+        return getString(TRUE_NAME);
+    }
+    public static String getIdNo(){
+        return getString(ID_NO);
     }
     public static String getPwd(){
         return getString(PWD);

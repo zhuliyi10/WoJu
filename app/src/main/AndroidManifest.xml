@@ -85,6 +85,12 @@
         </activity>
         <activity android:name=".ui.activity.ScanActivity">
         </activity>
+        <activity android:name=".ui.activity.IDAuthActivity">
+        </activity>
+        <activity android:name=".ui.activity.IDInfoActivity">
+        </activity>
+        <activity android:name=".ui.activity.ContractActivity">
+        </activity>
 
         <activity android:name=".leak.SingleInstanceActivity">
         </activity>
