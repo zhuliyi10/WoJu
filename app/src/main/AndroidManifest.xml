@@ -91,6 +91,8 @@
         </activity>
         <activity android:name=".ui.activity.ContractActivity">
         </activity>
+        <activity android:name=".ui.activity.PhoneModActivity">
+        </activity>
 
         <activity android:name=".leak.SingleInstanceActivity">
         </activity>

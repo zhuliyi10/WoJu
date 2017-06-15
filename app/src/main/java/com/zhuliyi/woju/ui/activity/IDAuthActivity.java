@@ -37,15 +37,15 @@ public class IDAuthActivity extends SwipeBackActivity {
         String name = etName.getText().toString();
         String IDNo=etIdNo.getText().toString();
         if(name.isEmpty()){
-            ToastUtil.showShort(context,"姓名不能为空");
+            ToastUtil.showShort("姓名不能为空");
         }else if(!VerificationUtils.matcherRealName(name)){
-            ToastUtil.showShort(context,"请输入正确的名字");
+            ToastUtil.showShort("请输入正确的名字");
         }else if(IDNo.isEmpty()){
-            ToastUtil.showShort(context,"身份证号不能为空");
+            ToastUtil.showShort("身份证号不能为空");
         }else if(!VerificationUtils.matcherIdentityCard(IDNo)){
-            ToastUtil.showShort(context,"请输入正确的身份证号码");
+            ToastUtil.showShort("请输入正确的身份证号码");
         }else {
-            ToastUtil.showLong(context,"认证成功");
+            ToastUtil.showLong("认证成功");
             LoginPreference.saveTrueName(name);
             LoginPreference.saveIDNo(IDNo);
             setResult(RESULT_OK);

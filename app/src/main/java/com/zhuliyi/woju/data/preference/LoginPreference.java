@@ -24,6 +24,9 @@ public class LoginPreference {
     private static final String TRUE_NAME="true_name";//真实名字
     private static final String ID_NO="id_no";//身份证号
     private static final String LOGIN_STATE="login_state";//登陆状态
+    private static final String WECHAT_ID="wechat_id";//微信号
+    private static final String QQ_ID="qq_id";//qq号
+    private static final String SINA_ID="sina_id";//新浪号
     private static final String LOGIN_TYPE="login_type";//登陆类型
     public static final int LOGIN_TYPE_PHONE=1;//手机号
     public static final int LOGIN_TYPE_WOXINNO=2;//蜗信号
@@ -46,7 +49,15 @@ public class LoginPreference {
     public static void saveLoginType(int loginType){
         saveInteger(LOGIN_TYPE,loginType);
     }
-
+    public static void saveWechatId(String wechatId){
+        saveString(WECHAT_ID,wechatId);
+    }
+    public static void saveQQId(String qqId){
+        saveString(QQ_ID,qqId);
+    }
+    public static void saveSinaId(String sinaId){
+        saveString(SINA_ID,sinaId);
+    }
     public static void saveAccount(String account){
         saveString(ACCOUNT,account);
     }
@@ -85,6 +96,15 @@ public class LoginPreference {
     }
     public static int getLoginType(){
         return getInteger(LOGIN_TYPE);
+    }
+    public static String getWechatId(){
+        return getString(WECHAT_ID);
+    }
+    public static String getQqId(){
+        return getString(QQ_ID);
+    }
+    public static String getSinaId(){
+        return getString(SINA_ID);
     }
     public static String getAccount(){
         return getString(ACCOUNT);

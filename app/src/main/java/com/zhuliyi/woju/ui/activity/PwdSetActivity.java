@@ -37,9 +37,9 @@ public class PwdSetActivity extends SwipeBackActivity {
         String pwd1=etPwd1.getText().toString().trim();
         String pwd2=etPwd2.getText().toString().trim();
         if(!pwd1.equals(pwd2)){
-            ToastUtil.showShort(context,"两次密码不一致");
+            ToastUtil.showShort("两次密码不一致");
         }else {
-            ToastUtil.showShort(context,"密码设置成功");
+            ToastUtil.showShort("密码设置成功");
             LoginPreference.savePwd(pwd1);
             ActivityManagerUtils.getInstance().removeActivityExceptMain();
         }

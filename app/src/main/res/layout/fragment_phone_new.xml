@@ -6,7 +6,6 @@
               android:layout_height="match_parent">
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="48dp">
@@ -51,14 +50,14 @@
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/text_tip"
-            android:text="修改密码之前要验证蜗居用户的手机号码，手机号码如未注册，验证成功后则自动注册"
+            android:text="输入新手机号验证完成更改"
             android:textColor="@color/text_low"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <Button
         android:id="@+id/btn_next"
-        android:text="下一步"
+        android:text="确定更换"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:background="@drawable/selector_green_round"

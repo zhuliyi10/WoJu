@@ -90,7 +90,7 @@
             android:background="@color/divider"/>
 
         <LinearLayout
-            android:id="@+id/wechat"
+            android:id="@+id/ll_wechat"
             android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -160,7 +160,7 @@
             android:background="@color/divider"/>
 
         <LinearLayout
-            android:id="@+id/sina"
+            android:id="@+id/ll_sina"
             android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"

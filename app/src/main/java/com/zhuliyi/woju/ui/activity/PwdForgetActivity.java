@@ -72,6 +72,7 @@ public class PwdForgetActivity extends SwipeBackActivity {
             if (LoginPreference.getPhone().isEmpty()) {
                 textTip.setText("手机号码未设置，验证成功后自动绑定手机号");
             }else {
+                textTip.setText("修改密码之前要验证蜗居用户的手机号码");
                 etPhone.setDelVisible(false);
                 etPhone.setText(LoginPreference.getPhone());
                 etPhone.setEnabled(false);
@@ -127,16 +128,18 @@ public class PwdForgetActivity extends SwipeBackActivity {
                 break;
             case R.id.btn_next:
                 if (!isPhoneNumber()) {
-                    ToastUtil.showShort(context, "请输入正确的手机号码");
+                    ToastUtil.showShort("请输入正确的手机号码");
                 } else if (etCode.getText().toString().equals("")) {
-                    ToastUtil.showShort(context, "验证码不能为空");
-                } else if (etPhone.getText().toString().equals("13250751496") && etCode.getText().toString().equals("1111")) {
+                    ToastUtil.showShort("验证码不能为空");
+                }else if (!LoginPreference.getPhone().isEmpty()&&!LoginPreference.getPhone().equals(etPhone.getText().toString())) {
+                    ToastUtil.showShort("手机号为："+LoginPreference.getPhone());
+                } else if (etCode.getText().toString().equals("1111")) {
                     if(type==2){
                         LoginPreference.savePhone(etPhone.getText().toString());
                     }
                     startActivity(new Intent(context, PwdSetActivity.class));
                 } else {
-                    ToastUtil.showShort(context, "手机号：13250751496\n验证码：1111");
+                    ToastUtil.showShort("验证码：1111");
                 }
                 break;
         }

@@ -5,23 +5,21 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <LinearLayout
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="48dp">
-        <com.zhuliyi.woju.widget.editText.EditTextWithDel
-            android:id="@+id/et_phone"
-            android:background="@null"
+        <TextView
+            android:id="@+id/text_phone"
             android:hint="手机号码"
             android:textSize="16sp"
             android:textColor="@color/text"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:inputType="phone"
             android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/btn_code"
             android:clickable="false"
@@ -51,7 +49,7 @@
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/text_tip"
-            android:text="修改密码之前要验证蜗居用户的手机号码，手机号码如未注册，验证成功后则自动注册"
+            android:text="更换手机前要验证旧手机号码"
             android:textColor="@color/text_low"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

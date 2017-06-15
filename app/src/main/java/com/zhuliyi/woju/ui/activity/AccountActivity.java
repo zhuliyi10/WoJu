@@ -167,7 +167,7 @@ public class AccountActivity extends SwipeBackActivity {
                 new MaterialDialog.Builder(context).title("设置蜗信号").content("注：设置成功后不能修改").inputType(InputType.TYPE_NUMBER_FLAG_DECIMAL).inputRange(4, 16).input("请输入4-16位的非特殊字符", "", false, new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
-                        ToastUtil.showLong(context, "设置成功");
+                        ToastUtil.showLong("设置成功");
                         LoginPreference.saveWoxinNo(input.toString());
                         setWoxinNoView();
                     }

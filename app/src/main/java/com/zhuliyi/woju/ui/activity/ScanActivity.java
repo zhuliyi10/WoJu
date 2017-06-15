@@ -76,7 +76,7 @@ public class ScanActivity extends SwipeBackActivity implements QRCodeView.Delega
 
     @Override
     public void onScanQRCodeSuccess(String result) {
-        ToastUtil.showToast(context, result, Toast.LENGTH_LONG);
+        ToastUtil.showToast(result, Toast.LENGTH_LONG);
         vibrate();
         zxingview.startSpot();
         scanFinished(result);
@@ -121,14 +121,14 @@ public class ScanActivity extends SwipeBackActivity implements QRCodeView.Delega
 
                     @Override
                     public void onDecodeQRCodeFailure() {
-                        ToastUtil.showToast(context, "未发现二维码", Toast.LENGTH_LONG);
+                        ToastUtil.showToast("未发现二维码", Toast.LENGTH_LONG);
                     }
                 });
             }
         }
     }
     private void scanFinished(String result){
-        ToastUtil.showLong(context,result);
+        ToastUtil.showLong(result);
         finish();
     }
 }

@@ -61,7 +61,7 @@ public class QRCodeDetailActivity extends SwipeBackActivity {
 
             @Override
             public void onEncodeQRCodeFailure() {
-                ToastUtil.showLong(context,"生成二维码失败");
+                ToastUtil.showLong("生成二维码失败");
             }
         });
     }

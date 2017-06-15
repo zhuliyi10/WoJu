@@ -16,7 +16,6 @@ import com.zhuliyi.woju.base.SwipeBackActivity;
 import com.zhuliyi.woju.data.preference.LoginPreference;
 import com.zhuliyi.woju.utils.ActivityManagerUtils;
 import com.zhuliyi.woju.utils.ToastUtil;
-import com.zhuliyi.woju.utils.VerificationUtils;
 import com.zhuliyi.woju.widget.editText.EditTextWithDel;
 
 import java.util.Map;
@@ -50,33 +49,28 @@ public class LoginActivity extends SwipeBackActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.sms:
-                        startActivity(new Intent(context,SmsActivity.class));
+                        startActivity(new Intent(context, SmsActivity.class));
                         break;
                 }
                 return true;
             }
         });
-        int loginType=LoginPreference.getLoginType();
-        String account=LoginPreference.getAccount();
-        if(loginType==LoginPreference.LOGIN_TYPE_PHONE||loginType==LoginPreference.LOGIN_TYPE_WOXINNO) {
-            if (!account.isEmpty()) {
-                etAccount.setText(account);
-                etAccount.setSelection(account.length());
-            }
-        }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         UMShareAPI.get(this).release();
     }
+
     UMAuthListener authListener = new UMAuthListener() {
         @Override
         public void onStart(SHARE_MEDIA platform) {
@@ -85,41 +79,53 @@ public class LoginActivity extends SwipeBackActivity {
 
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-            int type =0;
-            if(platform==SHARE_MEDIA.WEIXIN){
-                type=LoginPreference.LOGIN_TYPE_WECHAT;
-            }else if(platform==SHARE_MEDIA.QQ){
-                type=LoginPreference.LOGIN_TYPE_QQ;
-            }else if(platform==SHARE_MEDIA.SINA){
-                type=LoginPreference.LOGIN_TYPE_SINA;
+            int type = 0;
+            if (platform == SHARE_MEDIA.WEIXIN) {
+                type = LoginPreference.LOGIN_TYPE_WECHAT;
+            } else if (platform == SHARE_MEDIA.QQ) {
+                type = LoginPreference.LOGIN_TYPE_QQ;
+            } else if (platform == SHARE_MEDIA.SINA) {
+                type = LoginPreference.LOGIN_TYPE_SINA;
             }
-            String uid="";
-            String name="";
-            String gender="";
-            String iconUrl="";
+            String uid = "";
+            String name = "";
+            String gender = "";
+            String iconUrl = "";
             for (String key : data.keySet()) {
-                if(key.equals("uid")){
-                    uid=data.get(key);
-                }else if(key.equals("name")){
-                    name=data.get(key);
-                }else if(key.equals("gender")){
-                    gender=data.get(key);
-                }else if(key.equals("iconurl")){
-                    iconUrl=data.get(key);
+                if (key.equals("uid")) {
+                    uid = data.get(key);
+                } else if (key.equals("name")) {
+                    name = data.get(key);
+                } else if (key.equals("gender")) {
+                    gender = data.get(key);
+                } else if (key.equals("iconurl")) {
+                    iconUrl = data.get(key);
                 }
             }
-            if(uid.isEmpty()){
-                ToastUtil.showShort(context,"登陆失败");
-            }else {
+            if (uid.isEmpty()) {
+                ToastUtil.showShort( "登陆失败");
+            } else {
                 //传给接口uid,type,name,gender,iconUrl，接口判断是否注册，
                 // 如果uid还没关联userId,则注册用户，并且name,gender,iconUrl写入，并返回用户的基本信息
                 // 如果uid已经关联userId,则返回用户的基本信息
                 LoginPreference.saveLoginState(true);
                 LoginPreference.saveLoginType(type);
-                LoginPreference.saveAccount(uid);
-                LoginPreference.saveName(name);
-                LoginPreference.saveGender(gender);
-                LoginPreference.saveIconUrl(iconUrl);
+                if(LoginPreference.getName().isEmpty()) {
+                    LoginPreference.saveName(name);
+                }
+                if(LoginPreference.getGender().isEmpty()) {
+                    LoginPreference.saveGender(gender);
+                }
+                if(LoginPreference.getIconUrl().isEmpty()) {
+                    LoginPreference.saveIconUrl(iconUrl);
+                }
+                if (type == LoginPreference.LOGIN_TYPE_WECHAT) {
+                    LoginPreference.saveWechatId(uid);
+                } else if (type == LoginPreference.LOGIN_TYPE_QQ) {
+                    LoginPreference.saveQQId(uid);
+                } else if (type == LoginPreference.LOGIN_TYPE_SINA) {
+                    LoginPreference.saveSinaId(uid);
+                }
                 ActivityManagerUtils.getInstance().removeActivityExceptMain();
             }
 
@@ -127,16 +133,16 @@ public class LoginActivity extends SwipeBackActivity {
 
         @Override
         public void onError(SHARE_MEDIA platform, int action, Throwable t) {
-            ToastUtil.showShort(context,"错误" + t.getMessage());
+            ToastUtil.showShort("错误" + t.getMessage());
         }
 
         @Override
         public void onCancel(SHARE_MEDIA platform, int action) {
-            ToastUtil.showShort(context,"取消授权");
+            ToastUtil.showShort("取消授权");
         }
     };
 
-    @OnClick({R.id.img_eye, R.id.btn_login, R.id.text_forget,R.id.login_whchat,R.id.login_qq,R.id.login_weibo})
+    @OnClick({R.id.img_eye, R.id.btn_login, R.id.text_forget, R.id.login_whchat, R.id.login_qq, R.id.login_weibo})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_eye:
@@ -152,19 +158,19 @@ public class LoginActivity extends SwipeBackActivity {
                 etPwd.setSelection(etPwd.getText().toString().trim().length());
                 break;
             case R.id.btn_login:
-                String account=etAccount.getText().toString().trim();
-                String pwd=etPwd.getText().toString().trim();
-                if(account.isEmpty()){
-                    ToastUtil.showShort(context,"手机/用户名不能为空");
-                }else if(pwd.isEmpty()){
-                    ToastUtil.showShort(context,"密码不能为空");
-                }else {
-                    requestLogin(account,pwd);
+                String account = etAccount.getText().toString().trim();
+                String pwd = etPwd.getText().toString().trim();
+                if (account.isEmpty()) {
+                    ToastUtil.showShort("手机/用户名不能为空");
+                } else if (pwd.isEmpty()) {
+                    ToastUtil.showShort("密码不能为空");
+                } else {
+                    requestLogin(account, pwd);
                 }
                 break;
             case R.id.text_forget:
-                Intent intent=new Intent(context,PwdForgetActivity.class);
-                intent.putExtra("type",PwdForgetActivity.TYPE_FORGET);
+                Intent intent = new Intent(context, PwdForgetActivity.class);
+                intent.putExtra("type", PwdForgetActivity.TYPE_FORGET);
                 startActivity(intent);
                 break;
             case R.id.login_whchat:
@@ -180,24 +186,22 @@ public class LoginActivity extends SwipeBackActivity {
         }
     }
 
-    private void authLogin(SHARE_MEDIA e){
+    private void authLogin(SHARE_MEDIA e) {
         UMShareAPI.get(this).getPlatformInfo(this, e, authListener);
     }
 
-    private void requestLogin(String account,String pwd){
-        if(account.equals("13250751496")&&pwd.equals("123")){
-            ToastUtil.showShort(context,"登陆成功");
-            if(VerificationUtils.matcherPhoneNum(account)){
+    private void requestLogin(String account, String pwd) {
+        if ((account.equals(LoginPreference.getPhone()) || account.equals(LoginPreference.getWoxinNo()))&&pwd.equals(LoginPreference.getPwd())) {
+            ToastUtil.showShort("登陆成功");
+            if (account.equals(LoginPreference.getPhone())) {
                 LoginPreference.saveLoginType(LoginPreference.LOGIN_TYPE_PHONE);
-            }else {
+            } else {
                 LoginPreference.saveLoginType(LoginPreference.LOGIN_TYPE_WOXINNO);
             }
-            LoginPreference.saveAccount(account);
-            LoginPreference.savePwd(pwd);
             LoginPreference.saveLoginState(true);
             finish();
-        }else {
-            ToastUtil.showShort(context,"手机号：13250751496\n密码：123");
+        } else {
+            ToastUtil.showShort("账号或密码错误");
         }
     }
 }
