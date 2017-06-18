@@ -25,6 +25,8 @@ public class AboutActivity extends SwipeBackActivity {
     TextView textVersion;
     @BindView(R.id.text_type_download)
     TextView textTypeDownload;
+    @BindView(R.id.text_version_name)
+    TextView textVersionName;
 
     private String[] downloadArr = new String[]{"仅WIFI网络", "从不"};
 
@@ -34,6 +36,7 @@ public class AboutActivity extends SwipeBackActivity {
         setContentView(R.layout.activity_about);
         ButterKnife.bind(this);
         textTitle.setText("关于蜗信");
+        textVersionName.setText("蜗信 "+BuildConfig.VERSION_NAME);
         textVersion.setText(BuildConfig.VERSION_NAME);
         initView();
     }
@@ -43,7 +46,7 @@ public class AboutActivity extends SwipeBackActivity {
     }
 
     private void setTypeDownload() {
-        textTypeDownload.setText(downloadArr[SettingsPreference.getTypeApkDownload()%downloadArr.length]);
+        textTypeDownload.setText(downloadArr[SettingsPreference.getTypeApkDownload() % downloadArr.length]);
     }
 
     @OnClick({R.id.ll_update_tips, R.id.ll_introduce, R.id.ll_download})

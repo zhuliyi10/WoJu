@@ -17,7 +17,7 @@ android {
         minSdkVersion 13
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0.0_2"
+        versionName "1.0.0_3"
 
         manifestPlaceholders.put("UMENG_APPKEY", "5925ab03ae1bf82fcf0013e6")//友盟APPKEY
         buildConfigField "String", "WEIXIN_APP_ID", "\"wxd5a3f61b58a73d2c\""
