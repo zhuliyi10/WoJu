@@ -32,6 +32,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
@@ -72,7 +73,11 @@
                 android:layout_weight="1"
                 android:text="更新记录"
                 android:textColor="@color/text"/>
-
+            <TextView
+                android:id="@+id/text_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="版本号"/>
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -84,6 +89,7 @@
             android:layout_marginLeft="16dp"
             android:background="@color/item_line"/>
         <LinearLayout
+            android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
@@ -114,6 +120,8 @@
             android:background="@color/item_line"/>
 
         <LinearLayout
+            android:id="@+id/ll_introduce"
+            android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
@@ -141,6 +149,7 @@
             android:background="@color/item_line"/>
 
         <LinearLayout
+            android:background="@drawable/selector_gray"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"

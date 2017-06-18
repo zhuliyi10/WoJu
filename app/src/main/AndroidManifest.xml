@@ -61,6 +61,8 @@
         </activity>
         <activity android:name=".ui.activity.UpdateTipsActivity">
         </activity>
+        <activity android:name=".ui.activity.IntroduceActivity">
+        </activity>
         <activity android:name=".ui.activity.BillActivity">
         </activity>
         <activity android:name=".ui.activity.MineCircleActivity">

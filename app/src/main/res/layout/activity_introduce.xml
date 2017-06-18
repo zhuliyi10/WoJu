@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <com.zhuliyi.woju.widget.list.TurnCardListView
-        android:id="@+id/card_list"
+   <com.zhuliyi.woju.widget.web.InnerWebView
+        android:id="@+id/webView"
         android:background="@color/bg_white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-</LinearLayout>
+</FrameLayout>

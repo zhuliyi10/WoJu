@@ -12,7 +12,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zhuliyi.woju.R;
 import com.zhuliyi.woju.app.Constants;
 import com.zhuliyi.woju.base.BaseFragment;
-import com.zhuliyi.woju.leak.SingleInstanceActivity;
 import com.zhuliyi.woju.parser.NewsParser;
 import com.zhuliyi.woju.ui.activity.ChatActivity;
 import com.zhuliyi.woju.ui.adapter.NewsAdapter;
@@ -64,7 +63,7 @@ public class NewsFragment extends BaseFragment {
                         getContext().startActivity(new Intent(getContext(), ChatActivity.class));
                     }
                 }else if(type==2){
-                    getContext().startActivity(new Intent(getContext(), SingleInstanceActivity.class));
+//                    getContext().startActivity(new Intent(getContext(), SingleInstanceActivity.class));
                 }else if(type==3){
 
                 }

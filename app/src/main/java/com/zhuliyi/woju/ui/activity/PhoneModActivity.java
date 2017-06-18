@@ -76,9 +76,10 @@ public class PhoneModActivity extends SwipeBackActivity {
         imageThree.setImageResource(R.drawable.three_color);
         textThree.setTextColor(color);
         LoginPreference.savePhone(newPhone);
-        new MaterialDialog.Builder(context).title("修改手机号码成功").content("新手机号码为："+newPhone).positiveText("完成").canceledOnTouchOutside(true).onPositive(new MaterialDialog.SingleButtonCallback() {
+        new MaterialDialog.Builder(context).title("修改手机号码成功").content("新手机号码为："+newPhone).positiveText("完成").canceledOnTouchOutside(false).onPositive(new MaterialDialog.SingleButtonCallback() {
             @Override
             public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                setResult(RESULT_OK);
                 finish();
             }
         }).show();
