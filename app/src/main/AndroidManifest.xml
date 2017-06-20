@@ -36,6 +36,8 @@
         android:supportsRtl="true"
         tools:replace="android:icon, android:theme,android:allowBackup"
         android:theme="@style/AppTheme">
+        <!--Glide配置文件-->
+        <meta-data android:name="com.zhuliyi.woju.image.GlideConfiguration" android:value="GlideModule" />
         <activity android:name=".ui.activity.MainActivity">
         </activity>
         <activity android:name=".ui.activity.StartViewActivity">
@@ -94,6 +96,8 @@
         <activity android:name=".ui.activity.ContractActivity">
         </activity>
         <activity android:name=".ui.activity.PhoneModActivity">
+        </activity>
+        <activity android:name=".ui.activity.PrivacyActivity">
         </activity>
 
         <activity android:name=".leak.SingleInstanceActivity">

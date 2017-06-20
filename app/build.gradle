@@ -99,6 +99,9 @@ dependencies {
     compile 'cn.bingoogolapple:bga-zxing:1.1.0@aar'
     //ContextMenu https://github.com/Yalantis/Context-Menu.Android
     compile 'com.yalantis:contextmenu:1.0.7'
+
+    //https://github.com/zcweng/SwitchButton
+    compile 'com.github.zcweng:switch-button:0.0.3@aar'
     ////内存泄漏的检测
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'

@@ -160,3 +160,6 @@
 -keep class com.ta.utdid2.device.**{*;}
 #防止inline
 -dontoptimize
+
+#glide
+-keep public class * implements com.bumptech.glide.module.GlideModule

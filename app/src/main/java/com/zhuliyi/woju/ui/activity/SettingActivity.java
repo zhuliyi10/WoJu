@@ -15,6 +15,7 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.zhuliyi.woju.R;
 import com.zhuliyi.woju.base.SwipeBackActivity;
 import com.zhuliyi.woju.data.preference.LoginPreference;
+import com.zhuliyi.woju.image.ImageCachUtil;
 import com.zhuliyi.woju.utils.ToastUtil;
 
 import java.util.Map;
@@ -41,9 +42,12 @@ public class SettingActivity extends SwipeBackActivity {
     TextView textQqTip;
     @BindView(R.id.text_sina_tip)
     TextView textSinaTip;
+    @BindView(R.id.text_cache_size)
+    TextView textCacheSize;
 
     private int textLow;
-    public static final int REQUEST_PHONE_MOD=1;//修改手机号
+    public static final int REQUEST_PHONE_MOD = 1;//修改手机号
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +66,7 @@ public class SettingActivity extends SwipeBackActivity {
         setWechatView();
         setQQView();
         setSinaView();
+        setCacheView();
     }
 
     private void setPhoneView() {
@@ -76,7 +81,7 @@ public class SettingActivity extends SwipeBackActivity {
         String wechatId = LoginPreference.getWechatId();
         if (!wechatId.isEmpty()) {
             textWechatTip.setVisibility(View.GONE);
-        }else {
+        } else {
             textWechatTip.setVisibility(View.VISIBLE);
         }
     }
@@ -85,7 +90,7 @@ public class SettingActivity extends SwipeBackActivity {
         String qqId = LoginPreference.getQqId();
         if (!qqId.isEmpty()) {
             textQqTip.setVisibility(View.GONE);
-        }else {
+        } else {
             textQqTip.setVisibility(View.VISIBLE);
         }
     }
@@ -94,12 +99,15 @@ public class SettingActivity extends SwipeBackActivity {
         String sinaId = LoginPreference.getSinaId();
         if (!sinaId.isEmpty()) {
             textSinaTip.setVisibility(View.GONE);
-        }else {
+        } else {
             textSinaTip.setVisibility(View.VISIBLE);
         }
     }
+    private void setCacheView(){
+        textCacheSize.setText(ImageCachUtil.getInstance().getCacheSize());
+    }
 
-    @OnClick({R.id.btn_logout, R.id.ll_pwd, R.id.ll_phone,R.id.ll_wechat, R.id.ll_qq, R.id.ll_sina})
+    @OnClick({R.id.btn_logout, R.id.ll_pwd, R.id.ll_phone, R.id.ll_wechat, R.id.ll_qq, R.id.ll_sina})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_pwd:
@@ -125,7 +133,7 @@ public class SettingActivity extends SwipeBackActivity {
                 }
                 break;
             case R.id.ll_phone:
-                startActivityForResult(new Intent(context,PhoneModActivity.class),REQUEST_PHONE_MOD);
+                startActivityForResult(new Intent(context, PhoneModActivity.class), REQUEST_PHONE_MOD);
                 break;
             case R.id.ll_wechat:
                 if (LoginPreference.getWechatId().isEmpty()) {
@@ -147,6 +155,26 @@ public class SettingActivity extends SwipeBackActivity {
                 } else {
                     authUnbind(SHARE_MEDIA.SINA);
                 }
+                break;
+        }
+    }
+
+    @OnClick({R.id.ll_privacy, R.id.ll_notify, R.id.ll_cache})
+    public void onCommomViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_privacy:
+                startActivity(new Intent(context, PrivacyActivity.class));
+                break;
+            case R.id.ll_notify:
+                break;
+            case R.id.ll_cache:
+                new MaterialDialog.Builder(context).title("清理缓存("+ImageCachUtil.getInstance().getCacheSize()+")").content("清理缓存不影响应用数据").positiveText("确定清理").negativeText("取消").onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        ImageCachUtil.getInstance().clearImageAllCache();
+                        setCacheView();
+                    }
+                }).show();
                 break;
         }
     }
@@ -176,7 +204,7 @@ public class SettingActivity extends SwipeBackActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==REQUEST_PHONE_MOD&&resultCode==RESULT_OK){
+        if (requestCode == REQUEST_PHONE_MOD && resultCode == RESULT_OK) {
             textPhoneTip.setText(LoginPreference.getPhone());
         }
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
@@ -303,4 +331,6 @@ public class SettingActivity extends SwipeBackActivity {
         }).show();
 
     }
+
+
 }

@@ -275,7 +275,12 @@
                 android:text="清除缓存"
                 android:textColor="@color/text"
                 android:textSize="16sp"/>
-
+            <TextView
+                android:id="@+id/text_cache_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/text_low"/>
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
