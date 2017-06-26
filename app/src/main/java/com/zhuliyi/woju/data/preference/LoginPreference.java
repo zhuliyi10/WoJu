@@ -23,6 +23,7 @@ public class LoginPreference {
     private static final String BIRTHDAY="birthday";//生日 1992-3-20
     private static final String TRUE_NAME="true_name";//真实名字
     private static final String ID_NO="id_no";//身份证号
+    private static final String DELIVERY_ADDRESS="delivery_address";
     private static final String LOGIN_STATE="login_state";//登陆状态
     private static final String WECHAT_ID="wechat_id";//微信号
     private static final String QQ_ID="qq_id";//qq号
@@ -88,6 +89,9 @@ public class LoginPreference {
     public static void saveIDNo(String IDNo){
         saveString(ID_NO,IDNo);
     }
+    public static void saveDeliveryAddress(String deliveryAddress){
+        saveString(DELIVERY_ADDRESS,deliveryAddress);
+    }
     /**
      * @param pwd 加密后的密码
      */
@@ -139,7 +143,9 @@ public class LoginPreference {
     public static String getPwd(){
         return getString(PWD);
     }
-
+    public static String getDeliveryAddress(){
+        return getString(DELIVERY_ADDRESS);
+    }
 
     /**
      * 点击用户保存状态

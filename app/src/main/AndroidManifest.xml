@@ -3,7 +3,7 @@
           xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-sdk tools:overrideLibrary="com.afollestad.materialdialogs," />
+    <uses-sdk tools:overrideLibrary="com.afollestad.materialdialogs,com.desmond.citypicker" />
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -164,6 +164,11 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!-- 友盟所用的 结束 -->
 
+        <!--城市选择页面-->
+        <activity android:name="com.desmond.citypicker.ui.CityPickerActivity"
+                  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+                  android:screenOrientation="portrait">
+        </activity>
 
     </application>
 

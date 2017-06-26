@@ -19,6 +19,9 @@ import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
+import com.desmond.citypicker.bean.BaseCity;
+import com.desmond.citypicker.bin.CityPicker;
+import com.desmond.citypicker.callback.IOnCityPickerCheckedCallBack;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -65,8 +68,9 @@ public class AccountActivity extends SwipeBackActivity {
     TextView textAuth;
 
 
-
-    public static final int REQUEST_ID_AUTH=1;
+    public static final int REQUEST_ID_AUTH = 1;
+    @BindView(R.id.text_addr)
+    TextView textAddr;
     private Uri mCropImageUri;
     private String[] selectArr = new String[]{"拍照", "相册"};
     private String[] genderArr = new String[]{"男", "女"};
@@ -91,6 +95,7 @@ public class AccountActivity extends SwipeBackActivity {
         setGenderView();
         setBirthdayView();
         setIDAuthView();
+        setDeliveryAddress();
     }
 
     private void setWoxinNoView() {
@@ -138,13 +143,17 @@ public class AccountActivity extends SwipeBackActivity {
         String trueName = LoginPreference.getTrueName();
         if (trueName.isEmpty()) {
             textAuth.setText("未认证");
-        }else {
+        } else {
             textAuth.setText("已认证");
             textName.setText(trueName);
         }
     }
 
-    @OnClick({R.id.ll_head, R.id.ll_woxin_no, R.id.ll_nick, R.id.ll_signature, R.id.ll_gender, R.id.ll_birthday, R.id.ll_qr_code, R.id.ll_id_auth,R.id.ll_contract})
+    private void setDeliveryAddress() {
+        textAddr.setText(LoginPreference.getDeliveryAddress());
+    }
+
+    @OnClick({R.id.ll_head, R.id.ll_woxin_no, R.id.ll_nick, R.id.ll_signature, R.id.ll_gender, R.id.ll_birthday, R.id.ll_qr_code, R.id.ll_id_auth, R.id.ll_contract, R.id.ll_addr})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_head:
@@ -237,14 +246,38 @@ public class AccountActivity extends SwipeBackActivity {
                 startActivity(new Intent(context, QRCodeDetailActivity.class));
                 break;
             case R.id.ll_id_auth:
-                if(LoginPreference.getTrueName().isEmpty()){
-                    startActivityForResult(new Intent(context,IDAuthActivity.class),REQUEST_ID_AUTH);
-                }else {
-                    startActivity(new Intent(context,IDInfoActivity.class));
+                if (LoginPreference.getTrueName().isEmpty()) {
+                    startActivityForResult(new Intent(context, IDAuthActivity.class), REQUEST_ID_AUTH);
+                } else {
+                    startActivity(new Intent(context, IDInfoActivity.class));
                 }
                 break;
             case R.id.ll_contract:
-                startActivity(new Intent(context,ContractActivity.class));
+                startActivity(new Intent(context, ContractActivity.class));
+                break;
+            case R.id.ll_addr:
+                CityPicker.with(context)
+//                        .setHotCitiesId("2", "9", "18", "11", "66", "1", "80", "49", "100")
+//                        .setGpsCityByAMap("南京市","025")
+                        .setMaxHistory(6).setUseImmerseBar(true).setOnCityPickerCallBack(new IOnCityPickerCheckedCallBack() {
+                    @Override
+                    public void onCityPickerChecked(BaseCity baseCity) {
+                        //获取选择城市编码
+                        baseCity.getCodeByBaidu();  //baseCity.getCodeByAMap();//高德code
+
+                        //获取选择城市名称
+                        String addr = baseCity.getCityName();
+                        if(!addr.isEmpty()) {
+                            LoginPreference.saveDeliveryAddress(addr);
+                            setDeliveryAddress();
+                        }
+                        // 获取选择城市拼音全拼
+                        baseCity.getCityPinYin();
+
+                        //获取选择城市拼音首字母
+                        baseCity.getCityPYFirst();
+                    }
+                }).open();
                 break;
         }
     }
@@ -284,7 +317,7 @@ public class AccountActivity extends SwipeBackActivity {
         }
 
 
-        if(requestCode==REQUEST_ID_AUTH&&resultCode==RESULT_OK){
+        if (requestCode == REQUEST_ID_AUTH && resultCode == RESULT_OK) {
             setIDAuthView();
         }
     }
