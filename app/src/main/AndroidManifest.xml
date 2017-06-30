@@ -38,6 +38,16 @@
         android:theme="@style/AppTheme">
         <!--Glide配置文件-->
         <meta-data android:name="com.zhuliyi.woju.image.GlideConfiguration" android:value="GlideModule" />
+        <!--阿里热修复-->
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="24039390-1" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="16aec8ef98f91dc1a33e0d237346f07a" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCSg7H4Nc9M2t4mDPBkXOA+fYotXzSYNQ46YutDRC9H2dcxZAsxHWDL5qfH968oh4Po/hWPAIkXhQamp7XlAzvKG9zu0un3U9IHlsYJHJ7a3rEa34Gw2Kkz2p3SS5fEdeaaREgSM19sYe4T6aMa2pIma36XYlWIPY2/aTcMBme5q82N8UpOe6Fn8CaIQq4zcvy3Fhiod0BDxe5LtRtbdukO/i0fbNeXCch0dsfRm8sz4scjhz1MpwNEQ95OFGGHEA3vyYJLsLstEhl1XXpaLfn+XzBMU7iwMd9CZbdzNSlq6azYA41rbufTHXKU7F2fvvm3qEsQDOsnS1z0KpQSPOMdAgMBAAECggEAD90ij/WDlJa+JvCPts43mYyOQYtlbnWQLNI5FvdzBxyXKEnkzFSZ/nnjAMvYs1K4/alFPE6aiWll5vWRxFItTxzlNxavLpBs1VWF68aljJ1AH+DDchqDd5HcNMDqleMOLPXnt9DILDwOQymw919jI7XP5yRGjpHbnzYNN8gZwwilEZS3lZQiXtVmrZhXwyjKqswI7VyrbZazZ0jJmaK3nFW4uQOnFi/DoprZp9vH47fgruVOvI9YIbGcixf+uVDO9si+STZ6Ea9ixg2a+oAPz6LvZas1SKzqeyiPdoz4y49SWDqjVaHIHTwtXqy7ZTW/iWjCYsu8IagJMQ0LfnJvAQKBgQDQ8hw4NNvbG7XM5pZokblIi7HOBLCmd9/1t/7mGvI1qJR7+z57NA9fsiit9uf/uFtB52gSgg/rr1r8B2k6PBN3O8Cz7rjq0e3aq0Ta1SOZaqcrHMHyCY7dFkGVCzasuyt2Y6WfXIww9VY01YJ7aMOgNqJgZ9Wtb87O4AMT7lBF1QKBgQCzgl6yfHv9BvgPD6uAYewAO+O5areQerifd9qKmBnecAiJEdcyLsfWDtedpyIN4bT2al9TIT5RjjVuFXDJvCPUezApyHLu8XTlaWWlScPfSgX7EAQ/unjBzxkSkIdQOIqgZFA8jR0Yc/2x9LsyqvaPgU0RM/jwdmXwvsnTbHDkKQKBgQCTg+sSb5csyRKAN+fGqeMy6ZU9iyggTw+qDh4C3NFVutAh/A5vsyCLgl+f+mpuqvyaucJLFtIgpivJNX5AI/vmOSRipE6fUljoAfTZvpKklJyzHll7BO58/mKM1F7kcjxMGCvtJ8y+H+ed44N8l0lNymS3RXehPAe5HIRvxNedhQKBgEn5PIrzD6k6uPiD7ZnPQJDsHTDokFLCr9hPbMjWWzq2El5h8rtkWceVgDcgi8EKtSciuLuqJGM5Zj1CKqOHm4BRb4yYZPyglhp/73pIxqX6fDJ07DtS3baIYH2s/4YIduAX1pTNViMgkXhHMOl1WHvUveyL7Vcyg1nNVaCBvJfZAoGASDBnGnxqwd7X3FVzM4hnLCgK8ddP0UMpa8jc5SWTdvWJhlivHRmckFGkYJnkx8HyyKoo2DKH3jkCSaCzTWDbxOEYY0EW/DblnzBKj/Ag1n3PAVxieL81tvdsGXpLqDZwky2dkCIJEXMplVIPRsINPiBg4e2KgHP58dOxi2YujvA=" />
         <activity android:name=".ui.activity.MainActivity">
         </activity>
         <activity android:name=".ui.activity.StartViewActivity">

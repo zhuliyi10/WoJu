@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
+apply plugin: 'com.getkeepsafe.dexcount'//统计dex中的方法数
 
 android {
     signingConfigs {
         woxin {
             keyAlias 'leory'
             keyPassword 'woxin20170101'
-            storeFile file('D:/commonData/GitHutProject/WoJu/app/woxin.jks')
+            storeFile file('D:/zhuliyi/github/WoJu/app/woxin.jks')
             storePassword 'woxin20170101'
         }
     }
@@ -16,8 +17,8 @@ android {
         applicationId "com.zhuliyi.woju"
         minSdkVersion 13
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0.0_3"
+        versionCode 2
+        versionName "1.0.2"
 
         manifestPlaceholders.put("UMENG_APPKEY", "5925ab03ae1bf82fcf0013e6")//友盟APPKEY
         buildConfigField "String", "WEIXIN_APP_ID", "\"wxd5a3f61b58a73d2c\""
@@ -99,13 +100,14 @@ dependencies {
     compile 'cn.bingoogolapple:bga-zxing:1.1.0@aar'
     //ContextMenu https://github.com/Yalantis/Context-Menu.Android
     compile 'com.yalantis:contextmenu:1.0.7'
-
     //https://github.com/zcweng/SwitchButton
     compile 'com.github.zcweng:switch-button:0.0.3@aar'
     ////内存泄漏的检测
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    betaCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-
+    betaCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     compile 'com.desmond:CityPicker:0.4.3'
+    //    阿里热修复
+    compile 'com.aliyun.ams:alicloud-android-hotfix:3.0.2'
+    compile files('libs/alipaySingle-20170510.jar')
 }
